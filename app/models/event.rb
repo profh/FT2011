@@ -13,6 +13,11 @@ class Event < ActiveRecord::Base
   has_many :registrees, :through => :registrations, :class_name => 'User', :source => :user, :order => "last_name, first_name"
   has_many :attendees, :through => :registrations, :class_name => 'User', :source => :user, :conditions => "attended = true", :order => "last_name, first_name"
 
+  # Code for 
+  has_many :attendances
+  accepts_nested_attributes_for :attendances, :reject_if => lambda { |attendance| attendance[:user_id].blank? }, :allow_destroy => true
+
+
   # named scopes
   scope :chronological, order("start_date DESC")
   scope :alphabetical, order('name')

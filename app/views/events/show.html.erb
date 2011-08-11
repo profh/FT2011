@@ -4,23 +4,23 @@
 	<div id="whole" class="content_area">
 		<div class="event_border">
 			<div class="event_title">About</div>
-			<div class="event_name"><%=h @event.name %></div>
+			<div class="event_name"><%= @event.name %></div>
 			<div class="clear"></div>
 			
 			<div class="event_description">
-				<%=h @event.description %>
+				<%= @event.description %>
 				<div class="clear"></div>
 			
 				<div class="event_item_header">Event Type</div>
-				<div class="event_item_value"><%=h @event.event_type.name %></div>
+				<div class="event_item_value"><%= @event.event_type.name %></div>
 				<div class="clear"></div>
 				
 				<div class="event_item_header">Start Date</div>
-				<div class="event_item_value"><%=h @event.start_date.strftime("%A %d %b %Y @ %I:%M%p") %></div>
+				<div class="event_item_value"><%= @event.start_date.strftime("%A %d %b %Y @ %I:%M%p") %></div>
 				<div class="clear"></div>
 
 				<div class="event_item_header">End Date</div>
-				<div class="event_item_value"><%=h @event.end_date.strftime("%A %d %b %Y @ %I:%M%p") %></div>
+				<div class="event_item_value"><%= @event.end_date.strftime("%A %d %b %Y @ %I:%M%p") %></div>
 				<div class="clear"></div>
 				
 				<div class="event_item_header">Organization</div>
@@ -41,19 +41,19 @@
 				<div class="clear"></div>				
 				
 				<div class="event_item_header">Location</div>
-				<div class="event_item_value"><%=h @event.location.name %></div>
+				<div class="event_item_value"><%= @event.location.name %></div>
 				<div class="clear"></div>
 
 				<div class="event_item_header">Cost</div>
-				<div class="event_item_value">$<%=h "%.2f" % (@event.cost) %></div>
+				<div class="event_item_value">$<%= "%.2f" % (@event.cost) %></div>
 				<div class="clear"></div>
 
 				<div class="event_item_header">Registered Participants</div>
-				<div class="event_item_value"><%=h @event.registration_count %></div>
+				<div class="event_item_value"><%= @event.registration_count %></div>
 				<div class="clear"></div>
 				
 				<div class="event_item_header">Max Participants</div>
-				<div class="event_item_value"><%=h @event.max_participants_helper %></div>
+				<div class="event_item_value"><%= @event.max_participants_helper %></div>
 				<div class="clear"></div>
 				
 				<div class="event_item_header">Parental Consent</div>
@@ -79,7 +79,7 @@
 							end
 						end
 					%>
-					<%=h @display %>
+					<%= @display %>
 					</div>
 				<div class="clear"></div>				
 			</div>

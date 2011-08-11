@@ -44,26 +44,26 @@
 	<div class="clear"></div>
 			<div id="tab1" class="tab_content" style="padding-left:10px">
 			
-				<span style="font-size: 150%; color: #FF8E31"><%=h @org_users.size %></span> total participants
+				<span style="font-size: 150%; color: #FF8E31"><%= @org_users.size %></span> total participants
 				<br>
 				<br>
 				
 				<div class="graph" id="gender">
 					<dl>
 						<dt style="font-size: 110%"><span style="color: #FF6163">Girls</span>/<span style="color: #2690C1">Boys</span>:</dt>
-							<dd style="color: #ffffff" align="center" alt="test"><%=h @org_users.reject {|u| u.gender == "Female"}.size %></dd>
-							<dd style="color: #ffffff" align="center"><%=h @org_users.reject {|u| u.gender != "Male"}.size %></dd>
+							<dd style="color: #ffffff" align="center" alt="test"><%= @org_users.reject {|u| u.gender == "Female"}.size %></dd>
+							<dd style="color: #ffffff" align="center"><%= @org_users.reject {|u| u.gender != "Male"}.size %></dd>
 					</dl>
 					<br />
 					<br />
-					<%=h @org_users.reject {|u| u.gender != nil}.size %> participant(s) did not indicate gender.
+					<%= @org_users.reject {|u| u.gender != nil}.size %> participant(s) did not indicate gender.
 				</div>
 			</div>
 			<div id="tab2" class="tab_content">
 				<div id="graphage"></div>
 				<br />
 				<% unless @org_users.reject{|u| u.age < 5}.size == 0 %>
-					<%=h @org_users.reject{|u| u.birthday != nil}.size %> participant(s) did not indicate age.
+					<%= @org_users.reject{|u| u.birthday != nil}.size %> participant(s) did not indicate age.
 				<% end %>
 	
 			</div>
@@ -77,27 +77,27 @@
 					</tr>
 
 					<tr style="color: #0DA068">
-						<td>White or Caucasian</td><td><%=h @org_users.reject {|u| u.race != "White or Caucasian"}.size %></td>
+						<td>White or Caucasian</td><td><%= @org_users.reject {|u| u.race != "White or Caucasian"}.size %></td>
 					</tr>
 
 					<tr style="color: #194E9C">
-						<td>Black or African American</td><td><%=h @org_users.reject {|u| u.race != "Black or African American"}.size %></td>
+						<td>Black or African American</td><td><%= @org_users.reject {|u| u.race != "Black or African American"}.size %></td>
 					</tr>
 
 					<tr style="color: #ED9C13">
-						<td>Asian or Pacific Islander</td><td><%=h @org_users.reject {|u| u.race != "Asian or Pacific Islander"}.size %></td>
+						<td>Asian or Pacific Islander</td><td><%= @org_users.reject {|u| u.race != "Asian or Pacific Islander"}.size %></td>
 					</tr>
 
 					<tr style="color: #ED5713">
-						<td>Hispanic, Latino, or Spanish Origin</td><td><%=h @org_users.reject {|u| u.race != "Latino, Hispanic, or Spanish Origin"}.size %></td>
+						<td>Hispanic, Latino, or Spanish Origin</td><td><%= @org_users.reject {|u| u.race != "Latino, Hispanic, or Spanish Origin"}.size %></td>
 					</tr>					
 					
 					<tr style="color: #ED5713">
-						<td>American Indian</td><td><%=h @org_users.reject {|u| u.race != "American Indian"}.size %></td>
+						<td>American Indian</td><td><%= @org_users.reject {|u| u.race != "American Indian"}.size %></td>
 					</tr>
 					
 					<tr style="color: #C0C0C0">
-						<td>N/A</td><td><%=h @org_users.reject {|u| u.race != nil}.size %></td>
+						<td>N/A</td><td><%= @org_users.reject {|u| u.race != nil}.size %></td>
 					</tr>
 				</table>
 				</div>	
@@ -127,10 +127,10 @@
 		});
 		
 	arrayOfDataSingle = new Array(
-		 [<%=h @org_users.reject {|u| u.age < 5 || u.age > 10}.size %>,'5-10 y.o.','#FF6B6B'],
-		 [<%=h @org_users.reject {|u| u.age < 11 || u.age > 15}.size %>,'11-15 y.o.','#C7F464'],
-		 [<%=h @org_users.reject {|u| u.age < 16 || u.age > 20}.size %>,'16-20 y.o.','#EB9781'],
-		 [<%=h @org_users.reject {|u| u.age < 21}.size %>,'21+ y.o.','#556270']
+		 [<%= @org_users.reject {|u| u.age < 5 || u.age > 10}.size %>,'5-10 y.o.','#FF6B6B'],
+		 [<%= @org_users.reject {|u| u.age < 11 || u.age > 15}.size %>,'11-15 y.o.','#C7F464'],
+		 [<%= @org_users.reject {|u| u.age < 16 || u.age > 20}.size %>,'16-20 y.o.','#EB9781'],
+		 [<%= @org_users.reject {|u| u.age < 21}.size %>,'21+ y.o.','#556270']
 	);
 </script>
 

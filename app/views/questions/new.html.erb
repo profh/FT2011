@@ -3,7 +3,7 @@
 		
 	<div id="whole" class="content_area">
 		<div class="checkpoints_border">
-			<div class="checkpoints_title">Measurement: <%=h @measurement.name %></div>
+			<div class="checkpoints_title">Measurement: <%= @measurement.name %></div>
 			<div class="checkpoints_name">Manage Questions</div>
 			<div class="clear"></div>
 			
@@ -18,7 +18,7 @@
 				<% end %>
 				</table>
 			
-				<div id="dialog-form" title="Create New Question for [<%=h @measurement.name %>]">
+				<div id="dialog-form" title="Create New Question for [<%= @measurement.name %>]">
 					<p>All form fields are required.</p>
 
 					<% form_tag '/questions/create', :id => 'question_form' do %>

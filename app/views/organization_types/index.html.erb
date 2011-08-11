@@ -11,13 +11,13 @@
 				<hr />
 				<% @organization_types.each do |org_type| %>
 					<div class="profile_item_header">Name</div>
-					<div class="profile_item_value"><%=h org_type.name %></div>
+					<div class="profile_item_value"><%= org_type.name %></div>
 					
 					<div class="profile_item_header">Description</div>
-					<div class="profile_item_value"><%=h org_type.description %></div>
+					<div class="profile_item_value"><%= org_type.description %></div>
 
 					<div class="profile_item_header">Active</div>
-					<div class="profile_item_value"><%=h org_type.active %></div>
+					<div class="profile_item_value"><%= org_type.active %></div>
 					
 					<div class="clear"></div>
 					

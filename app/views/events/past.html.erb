@@ -13,12 +13,12 @@
 						<tr>
 							<td width="60px">
 								<div class="calendar">
-									<div class="month"><%=h event.start_date.strftime("%b") %></div>
-									<div class="date"><%=h event.start_date.strftime("%d") %></div>
+									<div class="month"><%= event.start_date.strftime("%b") %></div>
+									<div class="date"><%= event.start_date.strftime("%d") %></div>
 								</div>
 							<td>
 							<td>
-								<div class="button"><%= link_to event.name, event %></div> @ <%=h event.location.name %>
+								<div class="button"><%= link_to event.name, event %></div> @ <%= event.location.name %>
 							</td>
 						</tr>
 					</table>

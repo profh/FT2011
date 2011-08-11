@@ -3,7 +3,7 @@
 		
 	<div id="whole" class="content_area">
 		<div class="checkpoints_border">
-			<div class="checkpoints_title"><%=h @measurement.name %></div>
+			<div class="checkpoints_title"><%= @measurement.name %></div>
 			<div class="checkpoints_name">Participant Results</div>
 			<div class="clear"></div>
 			
@@ -13,7 +13,7 @@
 				<% @questions.each do |qn| %>
 					<div class="measurement_result_question">
 						<fieldset class="checkpoint_response">
-						<legend class="datatable_title"><%=h qn.content %></legend>
+						<legend class="datatable_title"><%= qn.content %></legend>
 						
 						<table cellpadding="0" cellspacing="0" border="0" class="display" id="datatable_<%= qn.id %>">
 							<thead>
@@ -41,13 +41,13 @@
 							%>
 								
 							<tr>
-								<td align="center"><%=h usr.full_name %></td>
-								<td align="center"><%=h usr.organizations.first.name %></td>
-								<td align="center"><%=h resp.checkpoint.due_on.strftime("%m/%d/%y") %></td>
-								<td align="center"><%=h resp.readable_response_value %></td>
-								<td align="center"><%=h resp.points_earned %></td>
-								<td align="center"><%=h resp.points_total%></td>
-								<td align="center"><%=h resp.percent_score%>%</td>
+								<td align="center"><%= usr.full_name %></td>
+								<td align="center"><%= usr.organizations.first.name %></td>
+								<td align="center"><%= resp.checkpoint.due_on.strftime("%m/%d/%y") %></td>
+								<td align="center"><%= resp.readable_response_value %></td>
+								<td align="center"><%= resp.points_earned %></td>
+								<td align="center"><%= resp.points_total%></td>
+								<td align="center"><%= resp.percent_score%>%</td>
 							</tr>					
 		
 						<% end %>		

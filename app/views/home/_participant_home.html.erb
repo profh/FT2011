@@ -11,13 +11,13 @@
 			<tr>
 				<td>
 					<div class="calendar_home">
-						<div class="month"><%=h a.created_at.strftime("%b") %></div>
-						<div class="date"><%=h a.created_at.strftime("%d") %></div>
+						<div class="month"><%= a.created_at.strftime("%b") %></div>
+						<div class="date"><%= a.created_at.strftime("%d") %></div>
 					</div>					
 				</td>
 				<td width="300px">
 					<%= link_to a.title, a %><br /> 
-					<%=h truncate(a.body, 60) %>
+					<%= truncate(a.body, 60) %>
 				</td>
 			</tr>
 		</table>
@@ -36,13 +36,13 @@
 					<tr>
 						<td>
 							<div class="calendar">
-								<div class="month"><%=h event.start_date.strftime("%b") %></div>
-								<div class="date"><%=h event.start_date.strftime("%d") %></div>
+								<div class="month"><%= event.start_date.strftime("%b") %></div>
+								<div class="date"><%= event.start_date.strftime("%d") %></div>
 							</div>
 						<td>
 						<td width="230px">
 							<%= link_to event.name, event %><br />
-							@ <%=h event.location.name %>
+							@ <%= event.location.name %>
 						</td>
 						<td>
 							 <% unless event.registered?(current_user.id) || event.registration_full? %>
@@ -64,8 +64,8 @@
 				<tr>
 					<td>
 						<div class="calendar_checkpoints">
-							<div class="month"><%=h checkpoint.due_on.strftime("%b") %></div>
-							<div class="date"><%=h checkpoint.due_on.strftime("%d") %></div>
+							<div class="month"><%= checkpoint.due_on.strftime("%b") %></div>
+							<div class="date"><%= checkpoint.due_on.strftime("%d") %></div>
 						</div>
 					</td>
 					<td width="200px">

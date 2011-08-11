@@ -12,16 +12,16 @@
 				<% @measurements.each do |measurement| %>
 				
 				<div class="checkpoints_item_header">Name</div>
-				<div class="checkpoints_item_value"><%=h measurement.name %></div>
+				<div class="checkpoints_item_value"><%= measurement.name %></div>
 				
 				<div class="checkpoints_item_header">Description</div>
-				<div class="checkpoints_item_value"><%=h measurement.description %></div>
+				<div class="checkpoints_item_value"><%= measurement.description %></div>
 				
 				<div class="checkpoints_item_header">Active</div>
-				<div class="checkpoints_item_value"><%=h measurement.active %></div>
+				<div class="checkpoints_item_value"><%= measurement.active %></div>
 				
 				<div class="checkpoints_item_header">Category</div>
-				<div class="checkpoints_item_value"><%=h measurement.measurement_category.title %></div>
+				<div class="checkpoints_item_value"><%= measurement.measurement_category.title %></div>
 
 				<div class="clear"></div>
 				

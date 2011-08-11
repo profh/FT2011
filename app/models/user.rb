@@ -163,14 +163,6 @@ class User < ActiveRecord::Base
     BCrypt::Engine.hash_secret(pass, password_salt)
   end
 
-  private
-
-  def prepare_password
-    unless password.blank?
-      self.password_salt = BCrypt::Engine.generate_salt
-      self.password_hash = encrypt_password(password)
-    end
-  end
   
   #====================
   # CHECKPOINT HELPERS
@@ -230,6 +222,15 @@ class User < ActiveRecord::Base
     verbs = %w(awesome fishy big small colorful)
     specials = %w(_ ~ - + * - & ^ % $ # @ !)
     return verbs[rand(verbs.length)] + specials[rand(specials.length)] + nouns[rand(nouns.length)] + "#{rand(100)}"
+  end
+  
+  private
+
+  def prepare_password
+    unless password.blank?
+      self.password_salt = BCrypt::Engine.generate_salt
+      self.password_hash = encrypt_password(password)
+    end
   end
   
 end

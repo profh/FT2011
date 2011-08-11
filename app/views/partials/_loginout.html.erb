@@ -1,6 +1,6 @@
 <div class="login-out">
 	<% if !current_user.nil? && current_user.has_updated? %>
-		<li>Welcome <%=h current_user.first_name %>, <strong><%= link_to 'logout', logout_path %></strong></li>
+		<li>Welcome <%= current_user.first_name %>, <strong><%= link_to 'logout', logout_path %></strong></li>
 	<% elsif !current_user.nil? && !current_user.has_updated? %>
 	    <li>Welcome New User, <strong><%= link_to 'logout', logout_path %></strong></li>
 	    <li>You need to <%= link_to "update your account!", edit_user_path(current_user) %></li>

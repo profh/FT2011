@@ -60,13 +60,13 @@
 				<tr>
 					<td>
 						<div class="calendar">
-							<div class="month"><%=h event.start_date.strftime("%b") %></div>
-							<div class="date"><%=h event.start_date.strftime("%d") %></div>
+							<div class="month"><%= event.start_date.strftime("%b") %></div>
+							<div class="date"><%= event.start_date.strftime("%d") %></div>
 						</div>
 					<td>
 					<td>
 						<%= link_to event.name, event %><br />
-						@ <%=h event.location.name %>
+						@ <%= event.location.name %>
 					</td>
 				</tr>
 			</table>
@@ -87,13 +87,13 @@
 				<tr>
 					<td>
 						<div class="calendar">
-							<div class="month"><%=h event.start_date.strftime("%b") %></div>
-							<div class="date"><%=h event.start_date.strftime("%d") %></div>
+							<div class="month"><%= event.start_date.strftime("%b") %></div>
+							<div class="date"><%= event.start_date.strftime("%d") %></div>
 						</div>
 					<td>
 					<td width="230px">
 						<%= link_to event.name, event %><br />
-						@ <%=h event.location.name %>
+						@ <%= event.location.name %>
 					</td>
 					<td>
 						<div class="button"><%= link_to 'Edit', edit_event_path(event) %></div>

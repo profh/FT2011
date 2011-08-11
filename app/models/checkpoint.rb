@@ -13,7 +13,7 @@ class Checkpoint < ActiveRecord::Base
   validates_presence_of :name
   validates_presence_of :due_on
 
-  MAX_CHECKPOINT_QUESTIONS = 100;      # set this to the most questions we allow the user to get in a checkpoint
+  MAX_CHECKPOINT_QUESTIONS = 10000;      # set this to the most questions we allow the user to get in a checkpoint
   
 end
 

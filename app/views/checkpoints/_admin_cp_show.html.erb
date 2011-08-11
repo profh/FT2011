@@ -4,15 +4,15 @@
 	<div id="whole" class="content_area">
 		<div class="checkpoints_border">
 			<div class="checkpoints_title">Checkpoint Details</div>
-			<div class="checkpoints_name"><%=h @checkpoint.name %></div>
+			<div class="checkpoints_name"><%= @checkpoint.name %></div>
 			<div class="clear"></div>
 			
 			<div class="checkpoints_description">
 				<div class="checkpoints_item_header">Name</div>
-				<div class="checkpoints_item_value"><%=h @checkpoint.name %></div>				
+				<div class="checkpoints_item_value"><%= @checkpoint.name %></div>				
 
 				<div class="checkpoints_item_header">Due On</div>
-				<div class="checkpoints_item_value"><%=h @checkpoint.due_on.strftime("%A %d %b %Y") %></div>	
+				<div class="checkpoints_item_value"><%= @checkpoint.due_on.strftime("%A %d %b %Y") %></div>	
 
         <div class="checkpoints_item_header">Distributed</div>
         <div class="checkpoints_item_value"><%= if @checkpoint.distributed then "Yes" else "No" end %></div>
@@ -32,7 +32,7 @@
 							end
 						end
 					%>
-					<%=h @display %>
+					<%= @display %>
 				</div>
 			</div>
 			<div class="clear"></div>

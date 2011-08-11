@@ -4,16 +4,16 @@
 	<div id="whole" class="content_area">
 		<div class="checkpoints_border">
 			<div class="checkpoints_title">Measurement Category Details</div>
-			<div class="checkpoints_name"><%=h @measurement_category.title %></div>
+			<div class="checkpoints_name"><%= @measurement_category.title %></div>
 			<div class="clear"></div>
 			
 			<div class="checkpoints_description">
 				<div class="checkpoints_item_header">Name</div>
-				<div class="checkpoints_item_value"><%=h @measurement_category.title %></div>
+				<div class="checkpoints_item_value"><%= @measurement_category.title %></div>
 			</div>
 			<div class="clear"></div>
 			<div class="checkpoints_description">
-			<div class="checkpoints_item_header">Measurements within <%=h @measurement_category.title %>:</div>
+			<div class="checkpoints_item_header">Measurements within <%= @measurement_category.title %>:</div>
 			<table>
         	<% @measurements.each do |measurement|%>
         	    <tr><td><div class="checkpoints_item_value"><%= link_to measurement.name, measurement_path(measurement)%></div></td></tr>

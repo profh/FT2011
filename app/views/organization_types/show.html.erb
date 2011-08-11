@@ -4,14 +4,14 @@
 	<div id="whole" class="content_area">
 		<div class="profile_border">
 			<div class="profile_title">About</div>
-			<div class="profile_name"><%=h @organization_type.name %></div>
+			<div class="profile_name"><%= @organization_type.name %></div>
 			<div class="clear"></div>
 			
 			<div class="profile_description">
-				<%=h @organization_type.description %>
+				<%= @organization_type.description %>
 				<div class="clear"></div>	
 				<div class="profile_item_header">Active</div>
-				<div class="profile_item_value"><%=h @organization_type.active%></div>
+				<div class="profile_item_value"><%= @organization_type.active%></div>
 				<div class="clear"></div>
 			</div>	
 

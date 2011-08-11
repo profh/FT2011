@@ -12,20 +12,17 @@
 		<div class="box_title">Login</div>
 		In order to access the site, you must login. If you don't have your login information, please contact your organization leader.
 		<br /><br />
-		<% form_for UserSession.new do |f| %>
-		  <%= f.error_messages %>
+		<%= form_tag sessions_path do %>
 		  <p>
-			<%= f.label :username %><br />
-			<%= f.text_field :username %>
+		    <%= label_tag :login, "Username" %><br />
+		    <%= text_field_tag :login, params[:login], :id => "login_field" %>
 		  </p>
-		  <br />
-		  <p>
-			<%= f.label :password %><br />
-			<%= f.password_field :password %>
+		  <p><br />
+		    <%= label_tag :password %><br />
+		    <%= password_field_tag :password %>
 		  </p>
-		  <br />
-		  <p><%= f.submit "Log in" %></p>
-		  <p><%= link_to "Forgot your password?", password_reset_path %></p>
+		  <p><br /><%= submit_tag "Log in" %></p>
+			<p><%# link_to "Forgot your password?", password_reset_path %></p>
 		<% end %>
 	</div>
 				

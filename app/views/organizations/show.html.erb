@@ -4,20 +4,20 @@
 	<div id="whole" class="content_area">
 		<div class="profile_border">
 			<div class="profile_title">About</div>
-			<div class="profile_name"><%=h @organization.name %></div>
+			<div class="profile_name"><%= @organization.name %></div>
 			<div class="clear"></div>
 			
 			<div class="profile_description">
 				<div class="profile_item_header">Organization Type</div>
-				<div class="profile_item_value"><%=h @organization.organization_type.name %></div>
+				<div class="profile_item_value"><%= @organization.organization_type.name %></div>
 				<div class="clear"></div>
 				
 				<div class="profile_item_header">Location</div>
-				<div class="profile_item_value"><%=h @organization.location.name %></div>
+				<div class="profile_item_value"><%= @organization.location.name %></div>
 				<div class="clear"></div>
 
 				<div class="profile_item_header">Active</div>
-				<div class="profile_item_value"><%=h @organization.active%></div>
+				<div class="profile_item_value"><%= @organization.active%></div>
 				<div class="clear"></div>
 				
 				
@@ -34,18 +34,18 @@
 		<div class="tab_container">
 			<div class="clear"></div>
 			<div id="tab1" class="tab_content">
-				<span style="font-size: 150%; left-padding: 10; color: #FF8E31"><%=h @participants.size %></span> total participant(s)
+				<span style="font-size: 150%; left-padding: 10; color: #FF8E31"><%= @participants.size %></span> total participant(s)
 				<br />
 				<br />
 				<div class="graph" id="gender">
 					<dl>
 						<dt style="font-size: 110%"><span style="color: #FF6163">Girls</span>/<span style="color: #2690C1">Boys</span>:</dt>
-							<dd style="color: #ffffff" align="center" alt="test"><%=h @participants.female.size %></dd>
-							<dd style="color: #ffffff" align="center"><%=h @participants.male.size %></dd>
+							<dd style="color: #ffffff" align="center" alt="test"><%= @participants.female.size %></dd>
+							<dd style="color: #ffffff" align="center"><%= @participants.male.size %></dd>
 					</dl>
 				</div>
 				<% unless @participants.reject{|u| u.gender != nil}.size == 0 %>
-					<%=h @participants.reject{|u| u.gender != nil}.size %> participant(s) did not indicate gender.
+					<%= @participants.reject{|u| u.gender != nil}.size %> participant(s) did not indicate gender.
 				<% end %>
 			</div>
 			
@@ -55,7 +55,7 @@
 			   <div id="graphage"></div>
 			   <br />
 			  <% unless @participants.reject{|u| u.age != 1}.size == 0 %>
-					<%=h @participants.reject{|u| u.age != 1}.size %> participant(s) did not indicate age.
+					<%= @participants.reject{|u| u.age != 1}.size %> participant(s) did not indicate age.
 				<% end %>	
 			</div>
 			
@@ -69,27 +69,27 @@
 						</tr>
 
 						<tr style="color: #0DA068">
-							<td>White or Caucasian</td><td><%=h @participants.reject {|u| u.race != "White or Caucasian"}.size %></td>
+							<td>White or Caucasian</td><td><%= @participants.reject {|u| u.race != "White or Caucasian"}.size %></td>
 						</tr>
 
 						<tr style="color: #194E9C">
-							<td>Black or African American</td><td><%=h @participants.reject {|u| u.race != "Black or African American"}.size %></td>
+							<td>Black or African American</td><td><%= @participants.reject {|u| u.race != "Black or African American"}.size %></td>
 						</tr>
 
 						<tr style="color: #ED9C13">
-							<td>Asian or Pacific Islander</td><td><%=h @participants.reject {|u| u.race != "Asian or Pacific Islander"}.size %></td>
+							<td>Asian or Pacific Islander</td><td><%= @participants.reject {|u| u.race != "Asian or Pacific Islander"}.size %></td>
 						</tr>
 
 						<tr style="color: #ED5713">
-							<td>Hispanic, Latino, or Spanish Origin</td><td><%=h @participants.reject {|u| u.race != "Latino, Hispanic, or Spanish Origin"}.size %></td>
+							<td>Hispanic, Latino, or Spanish Origin</td><td><%= @participants.reject {|u| u.race != "Latino, Hispanic, or Spanish Origin"}.size %></td>
 						</tr>					
 						
 						<tr style="color: #ED5713">
-							<td>American Indian</td><td><%=h @participants.reject {|u| u.race != "American Indian"}.size %></td>
+							<td>American Indian</td><td><%= @participants.reject {|u| u.race != "American Indian"}.size %></td>
 						</tr>
 						
 						<tr style="color: #C0C0C0">
-							<td>N/A</td><td><%=h @participants.reject {|u| u.race != nil}.size %></td>
+							<td>N/A</td><td><%= @participants.reject {|u| u.race != nil}.size %></td>
 						</tr>
 					</table>
 				</div>	
@@ -120,18 +120,18 @@
 									</td>	
 									
 									<td width="100">
-										<%=h participant.gender %>
+										<%= participant.gender %>
 									</td>									
 									
 									<td align="left" width="250">
-										<%=h participant.race %>
+										<%= participant.race %>
 									</td>
 									
 									<td>
 									<% if(participant.birthday == nil) %>
 										N/A
 									<% else %>
-										<%=h participant.age %>
+										<%= participant.age %>
 									<% end %>
 									</td>
 
@@ -182,10 +182,10 @@
 		});
 		
 	arrayOfDataSingle = new Array(
-		 [<%=h @participants.reject {|u| u.age < 5 || u.age > 10}.size %>,'5-10 y.o.','#FF6B6B'],
-		 [<%=h @participants.reject {|u| u.age < 11 || u.age > 15}.size %>,'11-15 y.o.','#C7F464'],
-		 [<%=h @participants.reject {|u| u.age < 16 || u.age > 20}.size %>,'16-20 y.o.','#EB9781'],
-		 [<%=h @participants.reject {|u| u.age < 21}.size %>,'21+ y.o.','#556270']
+		 [<%= @participants.reject {|u| u.age < 5 || u.age > 10}.size %>,'5-10 y.o.','#FF6B6B'],
+		 [<%= @participants.reject {|u| u.age < 11 || u.age > 15}.size %>,'11-15 y.o.','#C7F464'],
+		 [<%= @participants.reject {|u| u.age < 16 || u.age > 20}.size %>,'16-20 y.o.','#EB9781'],
+		 [<%= @participants.reject {|u| u.age < 21}.size %>,'21+ y.o.','#556270']
 	);
 
 	$('#graphage').jqbargraph({

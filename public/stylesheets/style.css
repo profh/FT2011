@@ -904,6 +904,13 @@ div.controls a.activeSlide {
 }
 
 /****** LOGIN ******/
+#login_field {
+	width: 200px;
+}
+#password_field {
+	width: 200px;
+}
+
 #login-container{
 	width:900px;
 	position:relative;

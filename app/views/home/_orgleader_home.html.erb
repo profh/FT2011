@@ -11,13 +11,13 @@
 			<tr>
 				<td>
 					<div class="calendar_home">
-						<div class="month"><%=h a.created_at.strftime("%b") %></div>
-						<div class="date"><%=h a.created_at.strftime("%d") %></div>
+						<div class="month"><%= a.created_at.strftime("%b") %></div>
+						<div class="date"><%= a.created_at.strftime("%d") %></div>
 					</div>					
 				</td>
 				<td width="230px">
 					<%= link_to a.title, a %><br /> 
-					<%=h truncate(a.body, 60) %>
+					<%= truncate(a.body, 60) %>
 				</td>
 				<td>
 					<% if a.user_id == current_user.id %>
@@ -45,13 +45,13 @@
 				<tr>
 					<td>
 						<div class="calendar_home">
-							<div class="month"><%=h event.start_date.strftime("%b") %></div>
-							<div class="date"><%=h event.start_date.strftime("%d") %></div>
+							<div class="month"><%= event.start_date.strftime("%b") %></div>
+							<div class="date"><%= event.start_date.strftime("%d") %></div>
 						</div>
 					<td>
 					<td width="230px">
 						<%= link_to event.name, event %><br />
-						@ <%=h event.location.name %>
+						@ <%= event.location.name %>
 					</td>
 					<td>
 						<div class="button"><%= link_to 'Register', new_registration_path + '/' + event.id.to_s %></div>
@@ -77,8 +77,8 @@
 				<tr>
 					<td>
 						<div class="calendar_home">
-							<div class="month"><%=h checkpoint.due_on.strftime("%b") %></div>
-							<div class="date"><%=h checkpoint.due_on.strftime("%d") %></div>
+							<div class="month"><%= checkpoint.due_on.strftime("%b") %></div>
+							<div class="date"><%= checkpoint.due_on.strftime("%d") %></div>
 						</div>
 					</td>
 					<td width="200px">
@@ -97,7 +97,7 @@
 	<div id="bottom_right" class="content_area">
 		<div class="box_title">Participants</div>
 		
-		<span style="font-size: 150%; color: #FF8E31"><%=h @org_users.size %></span> total participants
+		<span style="font-size: 150%; color: #FF8E31"><%= @org_users.size %></span> total participants
 		<br>
 		<br>
 		<% if(@org_users.length == 0) %>
