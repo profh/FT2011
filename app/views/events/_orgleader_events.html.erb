@@ -1,0 +1,64 @@
+<div id="content" class="color_events">
+	<div class="clear"></div>
+		
+	<div id="bottom_left" class="content_area">	
+		<div class="box_title">Past Events</div>
+		<% unless @old.empty? %>
+			<% @old.first(4).each do |event| %>
+				<table>
+					<tr>
+						<td>
+							<div class="calendar">
+								<div class="month"><%=h event.start_date.strftime("%b") %></div>
+								<div class="date"><%=h event.start_date.strftime("%d") %></div>
+							</div>
+						<td>
+						<td>
+							<%= link_to event.name, event %><br />
+							@ <%=h event.location.name %>
+						</td>
+					</tr>
+				</table>
+				<br />
+				
+			<% end %>
+			<div class="button"><%= link_to 'View All', :action => 'past' %></div>
+		<% else %>
+			There are no past events!
+		<% end %>
+	</div>
+	
+	<div id="bottom_right" class="content_area">
+		<div class="box_title">Upcoming Events</div>
+		<% if(@new.length == 0) %>
+			There are no upcoming events.
+			<br />
+		<% end %>
+		<% @new.first(4).each do |event| %>
+			<table>							
+				<tr>
+					<td>
+						<div class="calendar">
+							<div class="month"><%=h event.start_date.strftime("%b") %></div>
+							<div class="date"><%=h event.start_date.strftime("%d") %></div>
+						</div>
+					<td>
+					<td width="230px">
+						<%= link_to event.name, event %><br />
+						@ <%=h event.location.name %>
+					</td>
+					<td>
+					    <% unless event.registered?(current_user.id) || event.registration_full? %>
+						<div class="button"><%= link_to 'Register', new_registration_path + '/' + event.id.to_s %></div>
+						<% end %>
+					</td>
+				</tr>
+			</table>
+		<% end %>
+		<br />
+		<% if current_user.is_organization_admin? %><div class="button"><%= link_to 'Create New', new_event_path %></div><% end %>
+		<div class="button"><%= link_to 'View All', :action => 'past' %></div>
+	</div>
+				
+	<div class="clear"></div>
+</div>

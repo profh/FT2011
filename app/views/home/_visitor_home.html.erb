@@ -1,0 +1,43 @@
+<div id="content" class="color_home">
+	<div class="clear"></div>
+		
+	<div id="top_left" class="content_area">
+		<div class="box_title">Welcome</div>
+		<p>Welcome to Family Tyes' member site. This site is for Family Tyes participants, organization leaders, and administrators.
+		<br /><br />
+		If you are a visitor and would like to learn more about Family Tyes, please visit <a href="http://familytyes.com">our website</a>.</p>
+	</div>
+	
+	<div id="top_right" class="content_area">
+		<div class="box_title">Login</div>
+		In order to access the site, you must login. If you don't have your login information, please contact your organization leader.
+		<br /><br />
+		<% form_for UserSession.new do |f| %>
+		  <%= f.error_messages %>
+		  <p>
+			<%= f.label :username %><br />
+			<%= f.text_field :username %>
+		  </p>
+		  <br />
+		  <p>
+			<%= f.label :password %><br />
+			<%= f.password_field :password %>
+		  </p>
+		  <br />
+		  <p><%= f.submit "Log in" %></p>
+		  <p><%= link_to "Forgot your password?", password_reset_path %></p>
+		<% end %>
+	</div>
+				
+	<div class="clear"></div>
+			
+	<div id="bottom" class="content_area">
+		<div class="clear"></div>
+		<div align="center">
+			<img id = "rotater" src = "/images/random/<%= random_image %>" />
+			<br>
+		</div>
+	</div>
+					
+	<div class="clear"></div>
+</div>

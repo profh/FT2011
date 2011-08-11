@@ -1,0 +1,36 @@
+
+<div id="dialog-new-measurement-category" title="<%= @form_title %>">
+	<p>All form fields are required.</p>
+
+	<table cellspacing="10">
+		<% form_for(@measurement_category) do |f| %>
+		<% if @measurement_category.errors.any? %>
+	    <div id="error_explanation">
+	      <h2><%= pluralize(@measurement_category.errors.count, "error") %> prohibited this measurement_category from being saved:</h2>
+
+	      <ul>
+	      <% @measurement_category.errors.full_messages.each do |msg| %>
+	        <li><%= msg %></li>
+	      <% end %>
+	      </ul>
+	    </div>
+	  <% end %>
+					
+		<tr>
+			<td><%= f.label :title %></td>
+			<td><%= f.text_field :title %></td>
+		</tr>
+		
+		<tr>
+			<td><%= f.label :active %></td>
+			<td><%= f.check_box :active %></td>
+		</tr>
+				
+		<tr>
+			<td colspan="2">
+				<%= f.submit %>
+			</td>
+		</tr>
+		<% end %>
+	</table>
+</div>

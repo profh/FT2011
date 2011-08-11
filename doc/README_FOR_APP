@@ -1,0 +1,29 @@
+Checkpoint issue: truncation of number of questions per checkpoint
+
+Ordering questions: needs to have a field for order and displayed in that order (aka acts_as_list or quick eval) 
+
+Attendance tracking needs to be added
+
+Employ Devise for authentication solution
+
+Interface adjustments: some tasks/functions not obvious where to find them
+
+Can add a user to organizations when created, but cannot change organizations thereafter
+
+Kaminari for pagination 
+
+Filter/search so we can find all of a certain type, etc.
+
+Table of participants to glance with ability to drill down
+
+Token autocomplete for key autocompleted fields (see railscast)
+
+Events have field 'registration required' -- done only for those events
+
+Mass attendance/registration
+
+Everyone is part of FamilyTyes-At-Large so that it is easy to send out mass emails, announcements, etc.
+
+Scale questions aren't really working properly
+
+Administering a pre-test checkpoint

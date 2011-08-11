@@ -1,0 +1,30 @@
+<div id="content" class="color_profile">
+	<div class="clear"></div>
+		
+	<div id="top_left" class="content_area">
+		<div class="box_title">My Profile</div>	
+		
+		<div class="profile_item_header">Name</div>
+		<div class="profile_item_value"><%= current_user.full_name %></div>   
+
+		<div class="profile_item_header">Gender</div>
+		<div class="profile_item_value"><% if current_user.gender== nil %>Not on file, please Fill Out your Profile <%else%><%= current_user.gender %><%end%></div>
+		
+		<div class="profile_item_header">Birthday</div>
+		<div class="profile_item_value"><% if current_user.birthday== nil %>Not on file, please Fill Out your Profile <%else%><%= current_user.birthday.strftime("%b-%d-%Y") %><%end%></div>		
+	
+		<div class="profile_item_header">Race</div>
+		<div class="profile_item_value"><% if current_user.race== nil %>Not on file, please Fill Out your Profile <%else%><%= current_user.race %><%end%></div>		
+	</div>
+	
+	<div id="top_right" class="content_area">
+			<div class="box_title">Quick Links</div>
+			<ul class="quick_links">
+				<li><div class="button"><%= link_to 'Update profile / Change password', edit_user_path(current_user) %></div></li>
+				
+			</ul>
+	</div>
+	<div class="clear"></div>
+</div> 
+
+

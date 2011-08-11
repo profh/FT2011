@@ -1,0 +1,102 @@
+<div id="content" class="color_checkpoints">
+	<div class="clear"></div>
+		
+	<div id="top_left" class="content_area">
+		<div class="box_title">Checkpoints</div>
+		<% if(@checkpoints.length == 0) %>
+			There are no checkpoints.<br />
+		<% end %>		
+		<% @checkpoints.first(4).each do |checkpoint| %>
+			<table>
+				<tr>
+					<td>
+						<div class="calendar_checkpoints">
+							<div class="month"><%=h checkpoint.due_on.strftime("%b") %></div>
+							<div class="date"><%=h checkpoint.due_on.strftime("%d") %></div>
+						</div>
+					</td>
+					<td width="230px">
+						<%= link_to checkpoint.name, checkpoint %><br />		
+					</td>
+					<td>
+						<div class="button"><%= link_to 'Edit', edit_checkpoint_path(checkpoint) %></div>
+						<div class="button"><%= link_to 'Delete', checkpoint, :confirm => 'Are you sure?', :method => :delete %></div>
+					</td>
+				</tr>
+			</table>
+		<% end %>
+		<br />
+		<div class="button"><%= link_to 'Create New', new_checkpoint_path %></div>
+		<% if(@checkpoints.length != 0) %>
+			<div class="button"><%= link_to 'View All', :action => 'all' %></div>
+		<% end %>			
+	</div>
+	
+	<div id="top_right" class="content_area">
+		<div class="box_title">Quick Links</div>
+		<div class="event_item_header"><%= link_to 'Checkpoints', :action => 'all' %></div>
+		<div class="event_item_value">
+			<div class="button"><%= link_to 'Create New', new_checkpoint_path %></div>
+			<div class="button"><%= link_to 'View All', :action => 'all' %></div>
+		</div>
+		
+		<div class="event_item_header"><%= link_to 'Measurement', measurements_path %></div>
+		<div class="event_item_value">
+			<div class="button"><%= link_to 'Create New', new_measurement_path %></div>
+			<div class="button"><%= link_to 'View All', measurements_path %></div>
+		</div>
+
+		<div class="event_item_header"><%= link_to 'Measurement Categories', measurement_categories_path %></div>
+		<div class="event_item_value">
+			<div class="button"><%= link_to 'Create New', new_measurement_category_path %></div>
+			<div class="button"><%= link_to 'View All', measurement_categories_path %></div>
+		</div>
+	</div>
+				
+	<div class="clear"></div>
+			
+	<div id="bottom_left" class="content_area">
+		<div class="box_title">Measurements</div>
+		<% if(Measurement.all.count == 0) %>
+			There are no measurements.<br />
+		<% else %>
+		<% Measurement.all.first(7).each do |m| %>
+		<table>
+			<tr>
+				<td width="350px" height="30px"><%=link_to h(m.name), m %><td>
+				<td><div class="button"><%= link_to 'Edit', edit_measurement_path(m) %></div></td>
+				<td><div class="button"><%= link_to 'Delete', m, :confirm => 'Are you sure?', :method => :delete %></div>				</td>
+			</tr>
+		</table>
+		<% end %>
+		<% end %>
+		<br />
+		<div class="button"><%= link_to 'Create New', new_measurement_path %></div>
+		<% if(Measurement.all.count != 0) %>
+		<div class="button"><%= link_to 'View All', measurements_path %></div>
+		<% end %>
+	</div>
+	
+	<div id="bottom_right" class="content_area">
+		<div class="box_title">Measurement Categories</div>
+		<% if(MeasurementCategory.all.count == 0) %>
+			There are no measurement categories.<br />
+		<% end %>
+		<% MeasurementCategory.all.first(7).each do |mc| %>
+		<table>
+			<tr>
+				<td width="350px" height="30px"><%=link_to h(mc.title), mc %><td>
+				<td><div class="button"><%= link_to 'Edit', edit_measurement_category_path(mc) %></div></td>
+				<td><div class="button"><%= link_to 'Delete', mc, :confirm => 'Are you sure?', :method => :delete %></div>				</td>
+			</tr>
+		</table>
+		<% end %>
+		<br />
+		<div class="button"><%= link_to 'Create New', new_measurement_category_path %></div>
+		<% if(MeasurementCategory.all.count != 0) %>
+		<div class="button"><%= link_to 'View All', measurement_categories_path %></div>
+		<% end %>
+	</div>
+				
+	<div class="clear"></div>
+</div> 

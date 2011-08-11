@@ -1,0 +1,99 @@
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ * General page setup
+ */
+.datatable_title{
+	text-transform: uppercase;
+	color: #852323;
+	font-weight: bold;
+	font-size: 15px;
+} 
+
+.measurement_result_question {
+	margin: 0;
+	padding: 0;
+	color: #333;
+	background-color: #fff;
+}
+
+
+.measurement_result_question #container {
+	width: 800px;
+	margin: 30px auto;
+	padding: 0;
+}
+
+
+.measurement_result_question #footer {
+	margin: 50px auto 0 auto;
+	padding: 0;
+}
+
+.measurement_result_question #demo {
+	margin: 30px auto 0 auto;
+}
+
+.measurement_result_question .demo_jui {
+	margin: 30px auto 0 auto;
+}
+
+.measurement_result_question .big {
+	font-size: 1.3em;
+	font-weight: bold;
+	line-height: 1.6em;
+	color: #4E6CA3;
+}
+
+.measurement_result_question .spacer {
+	height: 20px;
+	clear: both;
+}
+
+.measurement_result_question .clear {
+	clear: both;
+}
+
+.measurement_result_question pre {
+	padding: 15px;
+	background-color: #F5F5F5;
+	border: 1px solid #CCCCCC;
+}
+
+.measurement_result_question h1 {
+	margin-top: 2em;
+	font-size: 1.3em;
+	font-weight: normal;
+	line-height: 1.6em;
+	color: #4E6CA3;
+	border-bottom: 1px solid #B0BED9;
+	clear: both;
+}
+
+.measurement_result_question h2 {
+	font-size: 1.2em;
+	font-weight: normal;
+	line-height: 1.6em;
+	color: #4E6CA3;
+	clear: both;
+}
+
+.measurement_result_question a {
+	color: #0063DC;
+	text-decoration: none;
+}
+
+.measurement_result_question a:hover {
+	text-decoration: underline;
+}
+
+.measurement_result_question ul {
+	color: #4E6CA3;
+}
+
+.css_right {
+	float: right;
+}
+
+.css_left {
+	float: left;
+}

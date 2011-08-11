@@ -1,0 +1,71 @@
+<div id="dialog-edit-user" title="Edit Profile">
+	<% form_for @user do |f| %>
+		<%= f.error_messages %>
+	  
+		<div class="form_label"><%= f.label :username %></div>
+		<%= f.text_field :username, :disabled => true %>
+		<br />
+
+		<div class="form_label"><%= f.label :email, "Email Address" %></div>
+		<%= f.text_field :email, :disabled => true %>
+		<br />
+
+		<div class="form_label"><%= f.label :first_name, "First Name" %></div>
+		<%= f.text_field :first_name %>
+		<br />
+
+		<div class="form_label"><%= f.label :last_name, "Last Name" %></div>
+		<%= f.text_field :last_name %>
+		<br />
+		
+		<div class="form_label"><%= f.label :gender, "Gender" %></div>
+		<%= f.radio_button :gender, "Male" %> Male
+		<%= f.radio_button :gender, "Female" %> Female
+		<br />
+		
+		<div class="form_label"><%= f.label :race, "Race" %></div>
+		<%= f.select :race, User::RACES, :prompt => "- Select Race -" %>
+		<br />
+
+		<div class="form_label"><%= f.label :birthday, "Birthday (YYYY-MM-DD)" %></div>
+		<%= f.text_field :birthday, :class => "datetimepicker"  %>
+		<br /><br />
+		
+		<fieldset style="padding-left:10px">
+			<legend>Address</legend>
+			<div class="form_label"><%= f.label :street, "Street Line 1" %></div>
+			<%= f.text_field :street %>
+			<br />
+			
+			<div class="form_label"><%= f.label :street_2, "Street Line 2" %></div>
+			<%= f.text_field :street_2 %>
+			<br />
+			
+			<div class="form_label"><%= f.label :city, "City" %></div>
+			<%= f.text_field :city %>
+			<br />
+			
+			<div class="form_label"><%= f.label :state, "State" %></div>
+			<%= f.select :state, User::STATES, :prompt => "- Select State -" %>
+			<br />
+			
+			<div class="form_label"><%= f.label :zip, "Zip Code" %></div>
+			<%= f.text_field :zip %>
+			<br /><br />
+		</fieldset>
+	
+		<div class="form_label"><%= f.label :phone %></div>
+		<%= f.text_field :phone %>
+		<br />
+		<% if User.find(params[:id]) == current_user %>
+			<div class="form_label"><%= f.label :password %></div>
+			<%= f.password_field :password %>
+			<br />
+	
+			<div class="form_label"><%= f.label :password_confirmation, "Confirm Password" %></div>
+			<%= f.password_field :password_confirmation %>
+		<% end %>
+		<br /><br />
+		<%= f.submit "Update" %>
+	<% end %>
+</div>

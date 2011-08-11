@@ -1,0 +1,15 @@
+<div class="banner">
+	<%= link_to(image_tag("/images/header/logo.gif", :border=>0, :title=>"Family Tyes"), home_path('home')) %>
+	<%= link_to(image_tag("/images/header/home.gif", :border=>0, :title=>"Home"), home_path('home')) %>
+	<%= link_to(image_tag("/images/header/events.gif", :border=>0, :title=>"Events"), events_path) %>
+	<% if !current_user.nil? && current_user.has_checkpoint? %>
+		<%= link_to(image_tag("/images/header/checkpoints_pending.gif", :border=>0, :title=>"Checkpoints"), checkpoints_path) %>
+	<% else %>
+		<%= link_to(image_tag("/images/header/checkpoints.gif", :border=>0, :title=>"Checkpoints"), checkpoints_path) %>
+	<% end %>
+	<% if !current_user.nil? && current_user.is_participant? %>
+		<%= link_to(image_tag("/images/header/profile.gif", :border=>0, :title=>"Profiles for organizations and participants"), organizations_path) %>
+	<% else %>
+		<%= link_to(image_tag("/images/header/organizations.gif", :border=>0, :title=>"Profiles for organizations and participants"), organizations_path) %>
+	<% end %>
+</div>

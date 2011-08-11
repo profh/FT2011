@@ -1,0 +1,87 @@
+<div id="content" class="color_home">
+	<div class="clear"></div>
+		
+	<div id="top_left" class="content_area">		
+		<div class="box_title">Announcements</div>
+		<% if(@announcements_targeted.length == 0) %>
+			There are no announcements.
+		<% end %>		
+		<% @announcements_targeted.first(4).each do |a| %>	
+		<table>			
+			<tr>
+				<td>
+					<div class="calendar_home">
+						<div class="month"><%=h a.created_at.strftime("%b") %></div>
+						<div class="date"><%=h a.created_at.strftime("%d") %></div>
+					</div>					
+				</td>
+				<td width="300px">
+					<%= link_to a.title, a %><br /> 
+					<%=h truncate(a.body, 60) %>
+				</td>
+			</tr>
+		</table>
+		<% end %>
+	</div>
+	
+	<div id="top_right" class="content_area">
+		<div class="box_title">Upcoming Events</div>
+			<% if(@new.length == 0) %>
+				There are no upcoming events.
+				<br />
+				<br />
+			<% end %>		
+			<% @new.first(2).each do |event| %>
+				<table>							
+					<tr>
+						<td>
+							<div class="calendar">
+								<div class="month"><%=h event.start_date.strftime("%b") %></div>
+								<div class="date"><%=h event.start_date.strftime("%d") %></div>
+							</div>
+						<td>
+						<td width="230px">
+							<%= link_to event.name, event %><br />
+							@ <%=h event.location.name %>
+						</td>
+						<td>
+							 <% unless event.registered?(current_user.id) || event.registration_full? %>
+							<div class="button"><%= link_to 'Register', new_registration_path + '/' + event.id.to_s %></div>
+							<% end %>
+						</td>
+					</tr>
+				</table>
+			<% end %>
+		<br />
+		<div class="box_title">Pending Checkpoints</div>	
+		<% if(@user_checkpoints.size == 0) %>
+			There are no pending checkpoints.
+			<br />
+		<% #end %>
+		<% else %>
+			<% checkpoint = @user_checkpoints.first %>
+			<table>
+				<tr>
+					<td>
+						<div class="calendar_checkpoints">
+							<div class="month"><%=h checkpoint.due_on.strftime("%b") %></div>
+							<div class="date"><%=h checkpoint.due_on.strftime("%d") %></div>
+						</div>
+					</td>
+					<td width="200px">
+						<%= link_to checkpoint.name, checkpoint %><br />								
+					</td>
+					<% checkpoint_user = checkpoint.checkpoint_users.reject{|u|u.user_id != current_user.id}.first%>
+					<% if checkpoint_user.score.nil? %><td width="150px">
+						<div class="button"><%= link_to 'Take Checkpoint', take_checkpoint_path(checkpoint_user) %></div>
+					</td>
+					<% end %>
+				</tr>
+			</table>
+		<% end %>
+	</div>
+				
+	<div class="clear"></div>
+			
+	
+</div>

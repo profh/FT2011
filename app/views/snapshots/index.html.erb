@@ -1,0 +1,29 @@
+<h1>Listing snapshots</h1>
+
+<table>
+  <tr>
+    <th>Measurement category</th>
+    <th>Checkpoint</th>
+    <th>User</th>
+    <th>Percent score</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @snapshots.each do |snapshot| %>
+  <tr>
+    <td><%= snapshot.measurement_category_id %></td>
+    <td><%= snapshot.checkpoint_id %></td>
+    <td><%= snapshot.user_id %></td>
+    <td><%= snapshot.percent_score %></td>
+    <td><%= link_to 'Show', snapshot %></td>
+    <td><%= link_to 'Edit', edit_snapshot_path(snapshot) %></td>
+    <td><%= link_to 'Destroy', snapshot, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Snapshot', new_snapshot_path %>

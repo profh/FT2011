@@ -1,0 +1,71 @@
+<div id="content" class="color_checkpoints">
+	<div class="clear"></div>
+		
+	<div id="top_left" class="content_area">
+		<div class="box_title">Checkpoints</div>
+		<% if(@org_checkpoints.length == 0) %>
+			There are no checkpoints.
+		<% end %>
+		<% @org_checkpoints.first(4).each do |checkpoint| %>
+			<table>
+				<tr>
+					<td>
+						<div class="calendar_checkpoints">
+							<div class="month"><%=h checkpoint.due_on.strftime("%b") %></div>
+							<div class="date"><%=h checkpoint.due_on.strftime("%d") %></div>
+						</div>
+					</td>
+					<td width="200px">
+						<%= link_to checkpoint.name, checkpoint %><br />
+						<%= checkpoint.checkpoint_users.reject{|u| u.score.nil?}.size %> / <%= checkpoint.checkpoint_users.size %> participants completed 
+					</td>
+				</tr>
+			</table>
+		<% end %>
+	</div>
+	
+	<div id="top_right" class="content_area">
+		<div class="box_title">Participant Checkpoint Status</div>
+		<div id="checkpoints">
+			<% if(@checkpoint_users.length == 0) %>
+				There are no checkpoints.
+			<% end %>
+			<% @checkpoint_users.each do |checkpoint| %>
+				<table>
+					<tr>
+						<td>
+							<%=h link_to checkpoint.user.full_name, user_link_path(checkpoint.user) %><br />			
+						</td>
+						<td width="150px">
+							<%= checkpoint.score.nil? ? "<strong>Incomplete</strong>":"Complete" %>
+						</td>
+					</tr>
+				</table>
+			<% end %>
+		</div>
+	</div>
+
+	<div class="clear"></div>
+	
+	<div id="bottom" class="content_area">
+		<div class="box_title">Organization Measurement Progress</div>
+		<div id="measurecat"></div>
+	
+	</div>
+	<div class="clear"></div>
+</div>
+
+
+<script type="text/javascript">	
+		arrayOfDataMulti = new Array(
+			<%= MeasurementCategory.all.map {|m| "[[#{m.organization_snapshot(current_user.organizations.first)},#{100-m.organization_snapshot(current_user.organizations.first)}],'#{m.title}']"}.join(",") %>
+			// <%# MeasurementCategory.all.map {|m| "[[#{m.organization_score(current_user.organizations.first)},#{m.total_organization_score(current_user.organizations.first)-m.organization_score(current_user.organizations.first)}],'#{m.title}']"}.join(",") %>
+		);	
+
+		$('#measurecat').jqBarGraph({
+			 data: arrayOfDataMulti,
+			 colors: ['#0DA068', '#ED9C13'],
+			 width: 720,
+			 height: 400
+		});
+</script>

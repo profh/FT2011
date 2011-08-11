@@ -1,0 +1,42 @@
+<div id="content" class="color_checkpoints">
+	<div class="clear"></div>
+		
+	<div id="whole" class="content_area">
+		<div class="checkpoints_border">
+			<div class="checkpoints_title"><%=h @organization.name %> </div>
+			<div class="checkpoints_name">Measurement Progress Analysis</div>
+			<div class="clear"></div>
+
+			<div class="checkpoints_description">
+				<% if @measurements_scores.nil? || @measurements_scores.empty? %>
+					<p> Sorry, this organization has no checkpoint results yet! </p>
+					<p> Please check back after students have been assigned a checkpoint and completed it. </p>
+				<% else %>
+					<% @measurements_scores.each_pair do |measurementName, arrayOfScores| %>
+						<div class="checkpoint_score_questions">
+							<h1> <%=h measurementName %> </h1>
+							<fieldset class="checkpoint_response">
+								<table>
+									<tr>
+										<td> Average Participant Score: </td>
+										<td> <%=h ((arrayOfScores.inject{ |sum, el| sum + el }.to_f / arrayOfScores.size) * 10).round / 10.to_f %>% </td>
+									<tr>
+									<tr>
+										<td> Highest Participant Score: </td>
+										<td> <%=h arrayOfScores.max.to_f %>% </td>
+									<tr>
+									<tr>
+										<td> Lowest Participant Score: </td>
+										<td> <%=h arrayOfScores.min.to_f %>% </td>
+									<tr>
+								</table>
+							</fieldset>
+							<div class="clear"></div>
+						</div>
+					<% end %>
+				<% end %>
+			</div>
+		</div>
+	</div>
+	<div class="clear"></div>
+</div>

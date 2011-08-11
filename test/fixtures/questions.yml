@@ -1,0 +1,15 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  content: MyText
+  measurement_id: 1
+  question_type: 1
+  completion_score: 1
+  active: false
+
+two:
+  content: MyText
+  measurement_id: 1
+  question_type: 1
+  completion_score: 1
+  active: false

@@ -1,0 +1,23 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  name: MyString
+  description: MyText
+  location_id: 1
+  cost: 9.99
+  max_participants: 1
+  permission_required: false
+  event_type_id: 1
+  start_date: 2011-08-06 12:25:27
+  end_date: 
+
+two:
+  name: MyString
+  description: MyText
+  location_id: 1
+  cost: 9.99
+  max_participants: 1
+  permission_required: false
+  event_type_id: 1
+  start_date: 2011-08-06 12:25:27
+  end_date: 

@@ -1,0 +1,151 @@
+<% org_participants = @org_users.reject{|ou| !ou.is_participant?} %>
+
+<div id="content" class="color_profile">
+	<div class="clear"></div>
+	
+	<div id="top_left" class="content_area">
+		<div class="box_title">List of Participants</div>
+		<% if(org_participants.length == 0) %>
+			There are no participants in your organization.<br />
+		<% end %>
+		<% org_participants.first(10).each do |org| %>
+		<table>
+			<tr>
+				<td width="350px"><%=link_to h(org.full_name), org %><td>
+				<td><div class="button"><%= link_to 'Edit', edit_user_path(org) %></div></td>
+				<td><div class="button"><%= link_to 'Delete', org, :confirm => 'Are you sure?', :method => :delete %></div>				</td>
+			</tr>
+		</table>
+		<% end %>
+		<br />
+		<div class="button"> <%= link_to("CREATE NEW", new_user_path) %></div>
+		<% if org_participants.length > 10 %>
+			<div class="button"><%= link_to 'View All', :controller=> 'users', :action => 'all' %></div>
+		<% end %>
+	</div>
+			
+	<div id="top_right" class="content_area">
+		<div class="box_title">Quick Links</div>
+		<li><div class="button"><%= link_to 'Fill out profile', edit_user_path(current_user) %></div></li> <br />
+		<li><div class="button"><%= link_to 'See your organization\'s progress', organization_analysis_path(current_user.organizations.first.id) %></div></li>
+	</div>
+	
+	<div class="clear"></div>
+			
+	<div id="bottom" class="content_area">
+		<div class="box_title">Demographic Information</div>
+		<ul class="tabs">
+			<li><a href="#tab1">General</a></li>
+			<li><a href="#tab2">Age</a></li>
+			<li><a href="#tab3">Race</a></li>
+		</ul>
+
+	<div class="tab_container">
+	<div class="clear"></div>
+			<div id="tab1" class="tab_content" style="padding-left:10px">
+			
+				<span style="font-size: 150%; color: #FF8E31"><%=h @org_users.size %></span> total participants
+				<br>
+				<br>
+				
+				<div class="graph" id="gender">
+					<dl>
+						<dt style="font-size: 110%"><span style="color: #FF6163">Girls</span>/<span style="color: #2690C1">Boys</span>:</dt>
+							<dd style="color: #ffffff" align="center" alt="test"><%=h @org_users.reject {|u| u.gender == "Female"}.size %></dd>
+							<dd style="color: #ffffff" align="center"><%=h @org_users.reject {|u| u.gender != "Male"}.size %></dd>
+					</dl>
+					<br />
+					<br />
+					<%=h @org_users.reject {|u| u.gender != nil}.size %> participant(s) did not indicate gender.
+				</div>
+			</div>
+			<div id="tab2" class="tab_content">
+				<div id="graphage"></div>
+				<br />
+				<% unless @org_users.reject{|u| u.age < 5}.size == 0 %>
+					<%=h @org_users.reject{|u| u.birthday != nil}.size %> participant(s) did not indicate age.
+				<% end %>
+	
+			</div>
+			<div id="tab3" class="tab_content">
+			   <canvas id="chart" width="500" height="400"></canvas>
+				<div id="hide">
+				<table id="chartData">
+					<tr>
+						<th>Race</th>
+						<th>Number of members</th>
+					</tr>
+
+					<tr style="color: #0DA068">
+						<td>White or Caucasian</td><td><%=h @org_users.reject {|u| u.race != "White or Caucasian"}.size %></td>
+					</tr>
+
+					<tr style="color: #194E9C">
+						<td>Black or African American</td><td><%=h @org_users.reject {|u| u.race != "Black or African American"}.size %></td>
+					</tr>
+
+					<tr style="color: #ED9C13">
+						<td>Asian or Pacific Islander</td><td><%=h @org_users.reject {|u| u.race != "Asian or Pacific Islander"}.size %></td>
+					</tr>
+
+					<tr style="color: #ED5713">
+						<td>Hispanic, Latino, or Spanish Origin</td><td><%=h @org_users.reject {|u| u.race != "Latino, Hispanic, or Spanish Origin"}.size %></td>
+					</tr>					
+					
+					<tr style="color: #ED5713">
+						<td>American Indian</td><td><%=h @org_users.reject {|u| u.race != "American Indian"}.size %></td>
+					</tr>
+					
+					<tr style="color: #C0C0C0">
+						<td>N/A</td><td><%=h @org_users.reject {|u| u.race != nil}.size %></td>
+					</tr>
+				</table>
+				</div>	
+			</div>
+
+		
+
+				
+	<div class="clear"></div>
+</div>
+
+<script type="text/javascript">
+	$(function() {
+		$("#tabs").tabs();
+	});
+</script>
+
+<script type="text/javascript">	
+		arrayOfDataMulti = new Array(
+			<%= MeasurementCategory.all.map {|m| "[[#{m.organization_snapshot(current_user.organizations.first)},#{100-m.organization_snapshot(current_user.organizations.first)}],'#{m.title}']"}.join(",") %>
+			// <%# MeasurementCategory.all.map {|m| "[[#{m.organization_score(current_user.organizations.first)},#{m.total_organization_score(current_user.organizations.first)-m.organization_score(current_user.organizations.first)}],'#{m.title}']"}.join(",") %>
+		);	
+
+		$('#measurecat').jqBarGraph({
+			 data: arrayOfDataMulti,
+			 colors: ['#0DA068', '#ED9C13'] ,
+		});
+		
+	arrayOfDataSingle = new Array(
+		 [<%=h @org_users.reject {|u| u.age < 5 || u.age > 10}.size %>,'5-10 y.o.','#FF6B6B'],
+		 [<%=h @org_users.reject {|u| u.age < 11 || u.age > 15}.size %>,'11-15 y.o.','#C7F464'],
+		 [<%=h @org_users.reject {|u| u.age < 16 || u.age > 20}.size %>,'16-20 y.o.','#EB9781'],
+		 [<%=h @org_users.reject {|u| u.age < 21}.size %>,'21+ y.o.','#556270']
+	);
+</script>
+
+<script type="text/javascript">
+	$(function() {
+		$("#gender dl").horizontalBarGraph({
+			colors: ["#FF6163", "#2690C1"], 
+			<% if @org_users.size < 20 %>
+				interval: 0.05});	
+			<% else %>
+				interval: 0.5});
+			<% end %>
+	});
+
+	$('#graphage').jqbargraph({
+		 data: arrayOfDataSingle 
+	});
+</script>

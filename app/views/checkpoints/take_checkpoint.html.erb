@@ -1,0 +1,106 @@
+<div id="dialog-take-checkpoint" title="Your Checkpoint">
+	<p>Answer all questions.</p>
+		
+		<% form_tag '/checkpoints/complete_checkpoint' do %>
+			<% @responses.each_with_index do |response, index| %>
+				<% fields_for "responses[#{index}]", response do |f| %>
+					<%= f.hidden_field :id, :value => response.id %>
+					<%
+						if(response.question.question_type == 1)
+					%>
+							<div class="form_border">
+								<div class="form_label"><%= response.question.content %></div>
+								<% if(!response.is_complete?) %>
+									<%= f.text_field :response_value, :value => '' %>
+								<% else %>
+									<%= f.text_field :response_value %>
+								<% end %>
+							</div>
+					<%
+						elsif(response.question.question_type == 2)
+					%>
+							<div class="form_border">
+								<div class="form_label"><%= response.question.content %></div>					
+					<%
+								response.question.question_options.each do |option|									
+					%>
+								<%= f.radio_button :response_value, option.id %> <%= option.content %><br />
+					<%
+								end
+					%>
+							</div>
+					<%
+						elsif(response.question.question_type == 3)
+							if(response.is_complete?)
+								@checked_values = response.response_value.split(/,/)
+							end
+					%>
+							<div class="form_border">
+								<div class="form_label"><%= response.question.content %></div>					
+						<%
+								@option_count = 0
+								response.question.question_options.each do |option|				
+									@checkbox_name = "responses[" + index.to_s + "][response_values][" + @option_count.to_s + "]"
+									
+									@checked = 0
+									if(@checked_values != nil)
+										@checked_values.each do |v|
+											puts "value of v = " + v + ", value of optionID = " + option.id.to_s
+											if(v.to_s == option.id.to_s)	
+						%>						
+												<%= f.check_box(:response_value, {:name => @checkbox_name, :checked => "checked"}, option.id, "") %> 
+												
+						<%						
+												@checked = 1
+											end
+										end
+									end
+									
+									if(@checked == 0)
+										
+					%>
+										<%= f.check_box(:response_value, {:name => @checkbox_name}, option.id, "") %> 
+					<%
+									end
+					%>
+									<%= option.content %><br />
+					<%
+									@option_count += 1
+								end
+					%>
+							</div>
+					<%
+						elsif(response.question.question_type == 4)
+							@scale1description = response.question.question_options[0].content
+							@scale10description = response.question.question_options[1].content
+							@slider_value_id = "slider_value_" + response.id.to_s
+							@slider_bar_id = "slider_bar_" + response.id.to_s
+					%>
+							<div class="form_border">
+								<div class="form_label">
+									On a scale of 1 to 10, <b>1</b> being <b><%= @scale1description %></b> and 
+									<b>10</b> being <b><%= @scale10description %></b>:<br />
+									<%= response.question.content %>
+								</div>
+								<div class="form_label">
+									Click and drag the slider below to choose your response.<br />
+									Your answer: <%= f.text_field :response_value, :id => @slider_value_id, :value => '', :readonly => 'readonly', :class => 'readonly_text' %>
+								</div>
+								<div id="<%= @slider_bar_id %>"></div>
+								<script>call_slider(<%= response.id.to_s %>)</script>		
+							</div>							
+					<%	
+							if(!response.is_complete?)
+					%>
+								<script>set_slider_value("<%= response.id.to_s %>", "<%= response.response_value.to_s %>")</script>
+					<%
+							end
+						end
+					%>
+				<% end %>
+			<% end %>
+			<br />
+			<%= submit_tag "Submit" %>
+		<% end %>	
+	
+</div>

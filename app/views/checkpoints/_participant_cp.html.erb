@@ -1,0 +1,90 @@
+<div id="content" class="color_checkpoints">
+	<div class="clear"></div>
+		
+	<div id="top_left" class="content_area">
+		<div class="box_title">My Checkpoints</div>
+		<% if(@user_checkpoints.length == 0) %>
+			There are no pending checkpoints.
+		<% end %>
+		<% @user_checkpoints.each do |checkpoint| %>
+			<% checkpoint_user = checkpoint.checkpoint_users.reject{|u|u.user_id != current_user.id}.first%>
+			<% if !checkpoint_user.is_complete? %>
+				<table>
+					<tr>
+							<td>
+								<div class="calendar_checkpoints">
+									<div class="month"><%=h checkpoint.due_on.strftime("%b") %></div>
+									<div class="date"><%=h checkpoint.due_on.strftime("%d") %></div>
+								</div>
+							</td>
+							<td width="200px">
+								<%= link_to checkpoint.name, checkpoint %><br />								
+							</td>
+							<td>
+	
+								<td width="150px">
+									<div class="button"><%= link_to 'Take Checkpoint', take_checkpoint_path(checkpoint_user) %></div>
+							</td>
+					</tr>
+				</table>
+			<% end %>
+		<% end %>
+	</div>
+	
+	<div id="top_right" class="content_area">
+		<div class="box_title">Past Checkpoints</div>
+		<% @user_checkpoints.first(5).each do |checkpoint| %>
+			<% checkpoint_user = checkpoint.checkpoint_users.reject{|u|u.user_id != current_user.id}.first%>
+			<% if checkpoint_user.is_complete? %>
+				<table>
+					<tr>
+							<td>
+								<div class="calendar_checkpoints">
+									<div class="month"><%=h checkpoint.due_on.strftime("%b") %></div>
+									<div class="date"><%=h checkpoint.due_on.strftime("%d") %></div>
+								</div>
+							</td>
+							<td width="200px">
+								<%= link_to checkpoint.name, checkpoint %><br />								
+							</td>
+							<td>
+	
+								<td width="150px">
+									<div class="button"><%= link_to 'View Results', checkpoint_results_path(checkpoint_user) %></div>
+							</td>
+					</tr>
+				</table>
+			<% end %>
+		<% end %>
+		
+	</div>
+	
+	<div class="clear"></div>
+	
+	<div id="bottom" class="content_area">
+		<div class="box_title">Measurement Category Progress</div>
+		<p>&nbsp;</p>
+		<div id="measurecat"></div>
+	</div>
+				
+				
+	<div class="clear"></div>
+	</div>
+	
+	
+
+
+	<script type="text/javascript">	
+		arrayOfDataMulti = new Array(
+			<%= MeasurementCategory.all.map {|m| "[[#{m.user_snapshot(current_user)},#{100-m.user_snapshot(current_user)}],'#{m.title}']"}.join(",") %>
+			 // <%# MeasurementCategory.all.map {|m| "[[#{m.user_score(current_user)},#{m.total_user_score(current_user)-m.user_score(current_user)}],'#{m.title}']"}.join(",") %>
+		);	
+
+		$('#measurecat').jqBarGraph({
+			 data: arrayOfDataMulti,
+			 colors: ['#0DA068', '#ED9C13'],
+			 width: 720,
+			 height: 400
+		});
+</script>
+

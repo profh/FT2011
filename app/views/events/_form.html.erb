@@ -1,0 +1,76 @@
+
+<div id="dialog-new-event" title="<%= @form_title %>">
+	<p>All form fields are required.</p>
+	
+		<% form_for(@event, :html => { :id => "event_form" }) do |f| %>
+		<% if @event.errors.any? %>
+	    <div id="error_explanation">
+	      <h2><%= pluralize(@event.errors.count, "error") %> prohibited this event from being saved:</h2>
+
+	      <ul>
+	      <% @event.errors.full_messages.each do |msg| %>
+	        <li><%= msg %></li>
+	      <% end %>
+	      </ul>
+	    </div>
+	  <% end %>
+		
+		<div class="form_label"><%= f.label :name %></div>
+		<%= f.text_field :name %>
+		<br />
+		
+		<div class="form_label"><%= f.label :description %></div>
+		<%= f.text_area :description, :rows => 5 %>
+		<br />
+
+		<div class="form_label"><%= f.label :location_id %></div>
+		<%= f.collection_select :location_id, Location.all, :id, :name, :prompt => "- Select Location -" %>
+		<div class="button"><%= link_to 'Create New location', new_location_path %></div>
+		<br />
+		
+		<div class="form_label"><%= f.label :cost %> ($)</div>
+		<%= f.text_field :cost %>
+		<br />
+
+		<div class="form_label"><%= f.label :max_participants %></div>
+		<%= f.text_field :max_participants %>
+		<br />
+		
+		<div class="form_label"><%= f.label :permission_required %></div>
+		<%= f.check_box :permission_required %>
+		<br />
+
+		<div class="form_label"><%= f.label :event_type_id %></div>
+		<%= f.collection_select :event_type_id, EventType.all, :id, :name, :prompt => "- Select Type -" %>
+		<% if current_user.is_admin? %>
+			<div class="button"><%= link_to 'Create new event type', new_event_type_path %></div>
+		<% end %>
+		<br />
+		
+		<div class="form_label"><%= f.label 'Organization' %></div>
+		<%= collection_select("event_organization", "organization_id", @organizations, :id, :name, {}, {:multiple => true, :size => 5, :name => "organization_ids[]"}) %>
+		
+		<br />
+		
+
+		<div class="form_label"><%= f.label :start_date %></div>
+		<%= f.text_field :start_date, :class => "datetimepicker" %>
+		<br />
+		
+		<div class="form_label"><%= f.label :end_date %></div>
+		<%= f.text_field :end_date, :class => "datetimepicker" %>
+		<br />
+
+		<div class="form_label"><%= f.label :measurement_id %></div>
+		<input type="text" id="autocomplete_measurements" name="autocomplete_measurements" placeholder="Type a measurment" style="color:#999" value="Type a measurement" onfocus="this.value='';this.style.color='#000'" onblur="this.value='Type a measurement';this.style.color='#999'" />
+		<div id="selected_measurements"></div>
+		
+		<div class="clear"></div>
+		
+		<%= hidden_field_tag 'selected_measurements_string', '' %>
+		<div class="actions">
+	    <%= f.submit %>
+	  </div>
+		
+		<% end %>
+</div>

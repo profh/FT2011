@@ -1,0 +1,13 @@
+<!-- Administrator -->
+<% if !current_user.nil? && current_user.is_admin? %>
+	<%= render :partial => 'organizations/admin_org' %>
+
+<!-- Organization Leader -->
+<% elsif !current_user.nil? && current_user.is_organization_admin? %>
+	<%= render :partial => 'organizations/orgleader_org' %>
+
+<!-- Participant-->
+<% elsif !current_user.nil? && current_user.is_participant? %>
+	<%= render :partial => 'organizations/participant_org' %>	
+	
+<% end %>

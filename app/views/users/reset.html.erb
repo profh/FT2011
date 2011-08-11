@@ -1,0 +1,12 @@
+<div id="content" class="color_home">
+	<div class="clear"></div>
+	<div id="whole" class="content_area">
+        What email address did you sign up for Family Tyes with?
+        <% form_tag(:action => "reseter") do %>
+          <%= text_field "email", "" %>
+          <%= submit_tag "submit", :id => "submit", :name => "submit", :class => "form_submit" %>
+        <% end -%>
+    </div>
+			
+    <div class="clear"></div>
+    </div>

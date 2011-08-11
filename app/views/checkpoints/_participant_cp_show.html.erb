@@ -1,0 +1,58 @@
+<div id="content" class="color_checkpoints">
+	<div class="clear"></div>
+		
+	<div id="whole" class="content_area">
+		<div class="checkpoints_border">
+			<div class="checkpoints_title">Checkpoint Details</div>
+			<div class="checkpoints_name"><%=h @checkpoint.name %></div>
+			<div class="clear"></div>
+			
+			<div class="checkpoints_description">
+				<div class="checkpoints_item_header">Name</div>
+				<div class="checkpoints_item_value"><%=h @checkpoint.name %></div>				
+
+				<div class="checkpoints_item_header">Due On</div>
+				<div class="checkpoints_item_value"><%=h @checkpoint.due_on.strftime("%A %d %b %Y") %></div>	
+
+        <div class="checkpoints_item_header">Distributed</div>
+        <div class="checkpoints_item_value"><%= if @checkpoint.distributed then "Yes" else "No" end %></div>
+
+				<div class="checkpoints_item_header">Organizations</div>
+				<div class="checkpoints_item_value">
+					<%
+						@display = ""
+						@count = 0
+						while (@checkpoint_orgs[@count] != nil)
+							if(@checkpoint_orgs[@count]['name'] != nil)
+								if(@count !=0)
+									@display += ", "
+								end
+								@display += @checkpoint_orgs[@count]['name']
+								@count += 1
+							end
+						end
+					%>
+					<%=h @display %>
+				</div>
+			</div>
+			<div class="clear"></div>
+		</div>
+		
+		
+		<div class="align_right">
+      <% if @checkpoint.distributed %>
+		<% checkpoint_usr = current_user.checkpoint_users.all(:conditions => {:checkpoint_id => @checkpoint.id}).first%>
+			  <strong>
+				<% if !checkpoint_usr.is_complete? %>
+			     	<div class="button"><%= link_to 'Take This Checkpoint', take_checkpoint_path(checkpoint_usr) %></div>
+				<% else %>
+					<div class="button"><%= link_to 'View Results', checkpoint_results_path(checkpoint_usr) %></div>
+				<% end %>
+			  </strong>    
+      <% end %>
+			<div class="button"><%= link_to 'Back', checkpoints_path %></div>
+		</div>
+	</div>
+				
+	<div class="clear"></div>
+</div> 		

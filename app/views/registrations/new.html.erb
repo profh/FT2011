@@ -1,0 +1,15 @@
+<div id="dialog-new-registration" title="Register for event">
+		<% form_for(@registration) do |f| %>
+		<%= f.error_messages %>
+		<% unless !current_user.nil? && current_user.is_participant? %>
+			<div class="form_label"><%= f.label 'Participants' %></div>
+			<%= collection_select("registration", "user_id", @org_users, :id, :full_name, {}, {:multiple => true, :size => 5, :name => "org_user_ids[]"}) %>
+		<% end %>
+		
+		<div class="clear"></div>
+		Register for <%=@event.name %>?
+		<div class="clear"></div>
+	
+  		<%= f.submit "Register" %>
+		<% end %>
+</div>

@@ -1,0 +1,37 @@
+<div id="content" class="color_events">
+	<div class="clear"></div>
+		
+	<div id="whole" class="content_area">
+		<div class="event_border">
+			<div class="event_title">Events</div>
+			<div class="event_name">Past Events</div>
+			<div class="clear"></div>
+			
+			<div class="event_description">
+				<% @past_events_all.each do |event| %>
+					<table>
+						<tr>
+							<td width="60px">
+								<div class="calendar">
+									<div class="month"><%=h event.start_date.strftime("%b") %></div>
+									<div class="date"><%=h event.start_date.strftime("%d") %></div>
+								</div>
+							<td>
+							<td>
+								<div class="button"><%= link_to event.name, event %></div> @ <%=h event.location.name %>
+							</td>
+						</tr>
+					</table>
+				<% end %>
+			</div>
+			<div class="clear"></div>
+		</div>
+		
+		
+		<div class="align_right">
+			<div class="button"><%= link_to 'Back', events_path %></div>
+		</div>
+	</div>
+				
+	<div class="clear"></div>
+</div> 

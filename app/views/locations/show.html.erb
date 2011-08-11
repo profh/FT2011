@@ -1,0 +1,48 @@
+<div id="content" class="color_events">
+	<div class="clear"></div>
+		
+	<div id="whole" class="content_area">
+		<div class="event_border">
+			<div class="event_title">Location Details</div>
+			<div class="event_name"><%=h @location.name %></div>
+			<div class="clear"></div>
+			
+			<div class="event_description">
+				
+				<div class="event_item_header">Name</div>
+				<div class="event_item_value"><%=h @location.name %></div>			
+				
+				<div class="event_item_header">Street</div>
+				<div class="event_item_value"><%=h @location.street %></div>
+				
+				<div class="event_item_header">City</div>
+				<div class="event_item_value"><%=h @location.city %></div>
+
+				<div class="event_item_header">State</div>
+				<div class="event_item_value"><%=h @location.state %></div>	
+			
+				<div class="event_item_header">Description</div>
+				<div class="event_item_value"><%=h @location.description %></div>
+
+				<div class="event_item_header">Active</div>
+				<div class="event_item_value"><%=h @location.active %></div>
+
+				<div class="clear"></div>
+				
+				<div class="button"><%= link_to 'Show', @location %></div>
+				<div class="button"><%= link_to 'Edit', edit_location_path(@location) %></div>
+				<div class="button"><%= link_to 'Delete', @location, :confirm => 'Are you sure?', :method => :delete %></div>
+
+				<div class="clear"></div>				
+			</div>		
+		</div>
+		
+		<div class="clear"></div>
+		<div class="align_right">
+			<div class="button"><%= link_to 'Edit', edit_location_path(@location) %></div>
+			<div class="button"><%= link_to 'Back to Locations', locations_path %></div>
+		</div>		
+	</div>
+						
+	<div class="clear"></div>
+</div>

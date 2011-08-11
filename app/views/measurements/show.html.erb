@@ -1,0 +1,38 @@
+<div id="content" class="color_checkpoints">
+	<div class="clear"></div>
+		
+	<div id="whole" class="content_area">
+		<div class="checkpoints_border">
+			<div class="checkpoints_title">Measurement Details</div>
+			<div class="checkpoints_name"><%=h @measurement.name %></div>
+			<div class="clear"></div>
+			
+			<div class="checkpoints_description">
+				<div class="checkpoints_item_header">Name</div>
+				<div class="checkpoints_item_value"><%=h @measurement.name %></div>
+
+				<div class="checkpoints_item_header">Description</div>
+				<div class="checkpoints_item_value"><%=h @measurement.description %></div>
+
+				<div class="checkpoints_item_header">Active</div>
+				<div class="checkpoints_item_value"><%=h @measurement.active %></div>
+				
+				<div class="checkpoints_item_header">Category</div>
+				<div class="checkpoints_item_value"><%=h @measurement.measurement_category.title %></div>				
+				
+				<div class="clear"></div>
+				
+				<div class="button"><%= link_to 'Manage Questions', '/questions/new/' + @measurement.id.to_s %></div>
+			</div>
+			<div class="clear"></div>
+		</div>
+		
+		
+		<div class="align_right">
+			<div class="button"><%= link_to 'Edit', edit_measurement_path(@measurement) %></div>
+			<div class="button"><%= link_to 'Back', measurements_path %></div>
+		</div>
+	</div>
+				
+	<div class="clear"></div>
+</div>

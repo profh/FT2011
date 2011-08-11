@@ -1,0 +1,212 @@
+<div id="content" class="color_profile">
+	<div class="clear"></div>
+		
+	<div id="whole" class="content_area">
+		<div class="profile_border">
+			<div class="profile_title">About</div>
+			<div class="profile_name"><%=h @organization.name %></div>
+			<div class="clear"></div>
+			
+			<div class="profile_description">
+				<div class="profile_item_header">Organization Type</div>
+				<div class="profile_item_value"><%=h @organization.organization_type.name %></div>
+				<div class="clear"></div>
+				
+				<div class="profile_item_header">Location</div>
+				<div class="profile_item_value"><%=h @organization.location.name %></div>
+				<div class="clear"></div>
+
+				<div class="profile_item_header">Active</div>
+				<div class="profile_item_value"><%=h @organization.active%></div>
+				<div class="clear"></div>
+				
+				
+				<div class="clear"></div>
+		
+		<ul class="tabs">
+			<li><a href="#tab1">General</a></li>
+			<li><a href="#tab2">Age</a></li>
+			<li><a href="#tab3">Race</a></li>
+			<li><a href="#tab4">Measurement Progress</a></li>
+			<li><a href="#tab5">Participants</a></li>
+		</ul>
+
+		<div class="tab_container">
+			<div class="clear"></div>
+			<div id="tab1" class="tab_content">
+				<span style="font-size: 150%; left-padding: 10; color: #FF8E31"><%=h @participants.size %></span> total participant(s)
+				<br />
+				<br />
+				<div class="graph" id="gender">
+					<dl>
+						<dt style="font-size: 110%"><span style="color: #FF6163">Girls</span>/<span style="color: #2690C1">Boys</span>:</dt>
+							<dd style="color: #ffffff" align="center" alt="test"><%=h @participants.female.size %></dd>
+							<dd style="color: #ffffff" align="center"><%=h @participants.male.size %></dd>
+					</dl>
+				</div>
+				<% unless @participants.reject{|u| u.gender != nil}.size == 0 %>
+					<%=h @participants.reject{|u| u.gender != nil}.size %> participant(s) did not indicate gender.
+				<% end %>
+			</div>
+			
+			
+			
+			<div id="tab2" class="tab_content">
+			   <div id="graphage"></div>
+			   <br />
+			  <% unless @participants.reject{|u| u.age != 1}.size == 0 %>
+					<%=h @participants.reject{|u| u.age != 1}.size %> participant(s) did not indicate age.
+				<% end %>	
+			</div>
+			
+			<div id="tab3" class="tab_content">
+			   <canvas id="chart" width="610" height="330"></canvas>
+				<div id="hide">
+					<table id="chartData">
+						<tr>
+							<th>Race</th>
+							<th>Number of members</th>
+						</tr>
+
+						<tr style="color: #0DA068">
+							<td>White or Caucasian</td><td><%=h @participants.reject {|u| u.race != "White or Caucasian"}.size %></td>
+						</tr>
+
+						<tr style="color: #194E9C">
+							<td>Black or African American</td><td><%=h @participants.reject {|u| u.race != "Black or African American"}.size %></td>
+						</tr>
+
+						<tr style="color: #ED9C13">
+							<td>Asian or Pacific Islander</td><td><%=h @participants.reject {|u| u.race != "Asian or Pacific Islander"}.size %></td>
+						</tr>
+
+						<tr style="color: #ED5713">
+							<td>Hispanic, Latino, or Spanish Origin</td><td><%=h @participants.reject {|u| u.race != "Latino, Hispanic, or Spanish Origin"}.size %></td>
+						</tr>					
+						
+						<tr style="color: #ED5713">
+							<td>American Indian</td><td><%=h @participants.reject {|u| u.race != "American Indian"}.size %></td>
+						</tr>
+						
+						<tr style="color: #C0C0C0">
+							<td>N/A</td><td><%=h @participants.reject {|u| u.race != nil}.size %></td>
+						</tr>
+					</table>
+				</div>	
+			</div>
+		
+			<div id="tab4" class="tab_content">
+			   <div id="measurecat"></div>
+			</div>
+			
+			<div id="tab5" class="tab_content">
+				<% unless @participants.empty? %>
+					<div class="clear"></div>
+					<table cellspacing="5px">
+						<thead>
+							<tr>
+								<th width="350">Name</th>
+								<th>Gender</th>
+								<th>Race</th>
+								<th>Age</th>
+								<th width="200">&nbsp;</th>
+							</tr>
+						</thead>
+						<tbody>
+							<% for participant in @participants %>
+								<tr>									
+									<td width="150">
+										<div class="button"><%=link_to participant.full_name, participant %></div>
+									</td>	
+									
+									<td width="100">
+										<%=h participant.gender %>
+									</td>									
+									
+									<td align="left" width="250">
+										<%=h participant.race %>
+									</td>
+									
+									<td>
+									<% if(participant.birthday == nil) %>
+										N/A
+									<% else %>
+										<%=h participant.age %>
+									<% end %>
+									</td>
+
+									<td>
+										<div class="button"><%= link_to 'Edit',  edit_user_path(participant) %></div>
+										<div class="button"><%= link_to 'Delete', participant, :confirm => 'Are you sure?', :method => :delete %></div>				
+									</td>
+								</tr>
+							<% end %>			
+						</tbody>
+					</table>
+				<% end %>
+			</div>
+		</div>
+			
+	</div>	
+			
+</div>
+		
+	<div class="clear"></div>
+		
+	<div class="align_right">
+		<div class="button"><%= link_to 'Edit', edit_organization_path(@organization) %></div>
+		<div class="button"><%= link_to 'Back', organizations_path %></div>
+		</div>
+	</div>
+				
+	<div class="clear"></div>
+</div> 
+
+
+<script type="text/javascript">
+	$(function() {
+		$("#tabs").tabs();
+	});
+</script>
+
+<script type="text/javascript">	
+		arrayOfDataMulti = new Array(
+			<%= MeasurementCategory.all.map {|m| "[[#{m.organization_snapshot(@organization)},#{100-m.organization_snapshot(@organization)}],'#{m.title}']"}.join(",") %>
+			// <%# MeasurementCategory.all.map {|m| "[[#{m.organization_score(current_user.organizations.first)},#{m.total_organization_score(current_user.organizations.first)-m.organization_score(current_user.organizations.first)}],'#{m.title}']"}.join(",") %>
+		);	
+
+		$('#measurecat').jqBarGraph({
+			 data: arrayOfDataMulti,
+			 colors: ['#0DA068', '#ED9C13'],
+			 width: 680
+		});
+		
+	arrayOfDataSingle = new Array(
+		 [<%=h @participants.reject {|u| u.age < 5 || u.age > 10}.size %>,'5-10 y.o.','#FF6B6B'],
+		 [<%=h @participants.reject {|u| u.age < 11 || u.age > 15}.size %>,'11-15 y.o.','#C7F464'],
+		 [<%=h @participants.reject {|u| u.age < 16 || u.age > 20}.size %>,'16-20 y.o.','#EB9781'],
+		 [<%=h @participants.reject {|u| u.age < 21}.size %>,'21+ y.o.','#556270']
+	);
+
+	$('#graphage').jqbargraph({
+		 data: arrayOfDataSingle 
+	});
+</script>
+	
+<script type="text/javascript">
+	$(function() {
+		$("#tabs").tabs();
+	});
+</script>
+
+<script type="text/javascript">
+	$(function() {
+		$("#gender dl").horizontalBarGraph({
+			colors: ["#FF6163", "#2690C1"], 
+			<% if @participants.all.size < 14 %>
+				interval: 0.05});	
+			<% else %>
+				interval: 0.5});
+			<% end %>
+	});
+</script>

@@ -1,0 +1,16 @@
+<!-- Administrator -->
+<% if !current_user.nil? && current_user.is_admin? %>
+	<%= render :partial => 'home/admin_home' %>
+
+<!-- Organization Leader -->
+<% elsif !current_user.nil? && current_user.is_organization_admin? %>
+	<%= render :partial => 'home/orgleader_home' %>
+
+<!-- Participant-->
+<% elsif !current_user.nil? && current_user.is_participant? %>
+	<%= render :partial => 'home/participant_home' %>	
+	
+<!--Vistor; Not Logged In-->
+<% else %>
+	<%= render :partial => 'home/visitor_home' %>
+<% end %>

@@ -1,0 +1,40 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>User:</b>
+  <%= @registration.user_id %>
+</p>
+
+<p>
+  <b>Event:</b>
+  <%= @registration.event_id %>
+</p>
+
+<p>
+  <b>Authority:</b>
+  <%= @registration.authority_id %>
+</p>
+
+<p>
+  <b>Id card:</b>
+  <%= @registration.id_card_id %>
+</p>
+
+<p>
+  <b>Amount paid:</b>
+  <%= @registration.amount_paid %>
+</p>
+
+<p>
+  <b>Permission form received:</b>
+  <%= @registration.permission_form_received %>
+</p>
+
+<p>
+  <b>Deregistration date:</b>
+  <%= @registration.deregistration_date %>
+</p>
+
+
+<%= link_to 'Edit', edit_registration_path(@registration) %> |
+<%= link_to 'Back', registrations_path %>

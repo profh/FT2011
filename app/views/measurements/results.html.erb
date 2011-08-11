@@ -1,0 +1,67 @@
+<div id="content" class="color_checkpoints">
+	<div class="clear"></div>
+		
+	<div id="whole" class="content_area">
+		<div class="checkpoints_border">
+			<div class="checkpoints_title"><%=h @measurement.name %></div>
+			<div class="checkpoints_name">Participant Results</div>
+			<div class="clear"></div>
+			
+			<div class="checkpoints_description">			
+			
+				<% # ITERATE OVER QUESTIONS FOR THIS MEASUREMENT %>
+				<% @questions.each do |qn| %>
+					<div class="measurement_result_question">
+						<fieldset class="checkpoint_response">
+						<legend class="datatable_title"><%=h qn.content %></legend>
+						
+						<table cellpadding="0" cellspacing="0" border="0" class="display" id="datatable_<%= qn.id %>">
+							<thead>
+								<tr>
+									<th>Participant</th>
+									<th>Organization</th>
+									<th>Date</th>
+									<th>Response</th>
+									<th>Score</th>
+									<th>Max Score</th>
+									<th>Score %</th>
+								</tr>
+							</thead>
+							<tbody>
+
+						
+						<%	# DISPLAY ALL RESPONSES FOR THIS QUESTION %>
+						<% @response_set = qn.responses.reject{|rsp| !rsp.is_complete?} %>
+						<% i = 0 %>
+						<% @response_set.each do |resp| %>
+							<%
+								usr = resp.user 
+								qopts = qn.question_options
+								i += 1
+							%>
+								
+							<tr>
+								<td align="center"><%=h usr.full_name %></td>
+								<td align="center"><%=h usr.organizations.first.name %></td>
+								<td align="center"><%=h resp.checkpoint.due_on.strftime("%m/%d/%y") %></td>
+								<td align="center"><%=h resp.readable_response_value %></td>
+								<td align="center"><%=h resp.points_earned %></td>
+								<td align="center"><%=h resp.points_total%></td>
+								<td align="center"><%=h resp.percent_score%>%</td>
+							</tr>					
+		
+						<% end %>		
+						</table>
+						
+						<script>datatable_init("datatable_<%= qn.id %>")</script>
+						</fieldset>
+					</div>
+					<div class="clear"></div>	
+				<% end %>
+			</div>
+		</div>			
+
+	</div>
+ 
+	<div class="clear"></div>
+</div>

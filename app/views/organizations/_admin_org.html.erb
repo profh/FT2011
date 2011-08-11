@@ -1,0 +1,56 @@
+<div id="content" class="color_profile">
+	<div class="clear"></div>
+		
+	<div id="top_left" class="content_area">
+		<div class="box_title">List of Organizations</div>
+		<% if(@organizations.length == 0) %>
+			There are no organizations.<br />
+		<% end %>
+		<% @organizations.first(7).each do |org| %>
+			<table>
+				<tr>
+					<td width="350px" height="30px"><%=link_to h(org.name), org %><td>
+					<td><div class="button"><%= link_to 'Progress', organization_analysis_path(org.id) %></div></td>
+				</tr>
+			</table>
+		<% end %>
+		<br />
+		<div class="button"><%= link_to 'Create New', new_organization_path %></div>
+		<% if(@organizations.length != 0) %>
+			<div class="button"><%= link_to 'View All', :action => 'all' %></div>	
+		<% end %>
+	</div>
+	
+	<div id="top_right" class="content_area">
+		<div class="box_title">Quick Links</div>
+		<div class="profile_item_header">Users</div>
+		<div class="profile_item_value">
+			<div class="button"><%= link_to 'Create New', new_user_path %></div>
+			<div class="button"><%= link_to 'View All', :controller=> 'users', :action => 'all' %></div>
+		</div>
+		
+		<div class="profile_item_header">Administrators</div>
+		<div class="profile_item_value">
+			<div class="button"><%= link_to 'Invite', :controller=> 'users', :action => 'new_admin' %></div>
+		</div>
+		
+		<div class="profile_item_header"><%= link_to 'Organization Types', organization_types_path %></div>
+		<div class="profile_item_value">
+			<div class="button"><%= link_to 'Create New', new_organization_type_path %></div>
+			<div class="button"><%= link_to 'View All', organization_types_path %></div>
+		</div>
+		<br />
+		<div class="profile_item_header"><%= link_to 'Locations', locations_path %></div>
+		<div class="profile_item_value">
+			<div class="button"><%= link_to 'Create New', new_location_path %></div>
+			<div class="button"><%= link_to 'View All', locations_path %></div>
+		</div>
+		<br />
+		<div class="profile_item_value">
+			<div class="button"><%= link_to 'Fill out profile/Edit Information', edit_user_path(current_user) %></div>
+		</div>
+
+	</div>
+				
+	<div class="clear"></div>
+</div> 

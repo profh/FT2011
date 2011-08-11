@@ -1,0 +1,46 @@
+<div id="content" class="color_checkpoints">
+	<div class="clear"></div>
+		
+	<div id="whole" class="content_area">
+		<div class="checkpoints_border">
+			<div class="checkpoints_title">Checkpoint Results</div>
+			<div class="checkpoints_name">
+				<% answer_str = "Your" %>
+				<% if @user.is_admin? %>
+					<% answer_str = @checkpoint_user.user.full_name + "'s" %>
+					<%=h answer_str %> Results
+				<% else %>
+					<%=h answer_str %> Results
+				<% end %>			
+			</div>
+			<div class="clear"></div>
+			
+			<div class="checkpoints_description">
+			
+				<div class="checkpoint_score">Total Score: <%=h @checkpoint_user.percent_score %>%</div>
+				<div class="checkpoint_score_questions">
+					<% i = 0 %>
+					<% @checkpoint_user.responses.all.each do |resp| %>
+						<br /><br />
+						<fieldset class="checkpoint_response">
+						<% 	
+							i += 1
+							question = resp.question
+							qopts = question.question_options
+						%>
+							
+							<legend><h1><%=h i.to_s + ". " + question.content %></h1></legend>
+							<%=h answer_str %> answer was: <br />
+							<p> <%= resp.readable_response_value %> </p>
+							<%=h answer_str %> score was: (<%=h resp.points_earned %>/<%=h resp.points_total%>)
+						</fieldset>
+						<div class="clear"></div>
+					<% end %>
+				</div>
+
+			</div>
+		</div>
+	</div>
+ 
+	<div class="clear"></div>
+</div>

@@ -1,0 +1,108 @@
+<div id="content" class="color_profile">
+	<div class="clear"></div>
+		
+	<div id="top_left" class="content_area">
+		<div class="box_title">Profile</div>	
+		
+		<div class="profile_item_header">Name</div>
+		<div class="profile_item_value"><%= @user.full_name %></div>
+
+		<div class="profile_item_header">Gender</div>
+		<div class="profile_item_value">
+			<% if @user.gender == nil %>
+				Gender N/A, please update profile
+			<% else %>
+				<%= @user.gender %>
+			<% end %>
+		</div>	
+		
+		<div class="profile_item_header">Birthday</div>
+		<div class="profile_item_value">
+			<% if @user.birthday == nil %>
+				Birthday N/A, please update profile
+			<% else %>
+				<%= @user.birthday.strftime("%b-%d-%Y") %>
+			<% end %>
+		</div>		
+		
+		<div class="profile_item_header">Race</div>
+		<div class="profile_item_value">
+			<% if @user.race == nil %>
+				Race N/A, please update profile
+			<% else %>
+				<%= @user.race %>
+			<% end %>
+		</div>	
+		<div class="profile_item_header">Email</div>
+		<div class="profile_item_value"><%= @user.email %></div>				
+		
+		<div class="profile_item_header">Username</div>
+		<div class="profile_item_value"><%= @user.username %></div>
+
+		<div class="profile_item_header">Address</div>
+		<div class="profile_item_value">
+			<table>
+				<tr> <td> <%= @user.street %> </tr> </td>
+				<% if @user.street_2 != nil %>
+				<tr> <td> <%= @user.street_2 %> </tr> </td>
+				<% end %>
+				<tr> <td> <%= @user.city %>, <%= @user.state %> <%= @user.zip %> </tr> </td>
+			</table>
+		</div>		
+
+		<div class="profile_item_header">Phone</div>
+		<div class="profile_item_value"><%= @user.phone %></div>		
+	</div>
+	
+	<div id="top_right" class="content_area">
+		<div class="box_title">Completed Checkpoints</div>
+			<% @user.checkpoints.first(4).each do |checkpoint| %>
+				<% checkpoint_user = checkpoint.checkpoint_users.reject{|u|u.user_id != @user.id}.first %>
+				<% if checkpoint_user.is_complete? %>
+					<table>
+						<tr>
+								<td>
+									<div class="calendar_checkpoints">
+										<div class="month"><%=h checkpoint.due_on.strftime("%b") %></div>
+										<div class="date"><%=h checkpoint.due_on.strftime("%d") %></div>
+									</div>
+								</td>
+								<td width="200px">
+									<%= link_to checkpoint.name, checkpoint %><br />								
+								</td>
+								<td>
+
+								<td width="150px">
+									<div class="button"><%= link_to 'View Results', checkpoint_results_path(checkpoint_user) %></div>
+								</td>
+						</tr>
+					</table>
+				<% end %>
+			<% end %>
+	</div>
+	
+	<div class="clear"></div>
+
+	<div id="bottom" class="content_area">
+		<div class="box_title">Measurement Progress</div>
+			<div id="measurecat"></div>
+	</div>
+	
+	<div class="clear"></div>
+</div> 
+
+
+<script type="text/javascript">	
+		arrayOfDataMulti = new Array(
+			<%= MeasurementCategory.all.map {|m| "[[#{m.user_snapshot(current_user.organizations.first)},#{100-m.user_snapshot(current_user.organizations.first)}],'#{m.title}']"}.join(",") %>
+		  // <%# MeasurementCategory.all.map {|m| "[[#{m.user_score(@user)},#{m.total_user_score(@user)-m.user_score(@user)}],'#{m.title}']"}.join(",") %>
+		);	
+
+		$('#measurecat').jqBarGraph({
+			 data: arrayOfDataMulti,
+			 colors: ['#0DA068', '#ED9C13'],
+			 width: 720,
+			 height: 400
+		});
+	</script>
+

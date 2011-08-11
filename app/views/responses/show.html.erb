@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Question:</b>
+  <%= @response.question_id %>
+</p>
+
+<p>
+  <b>User:</b>
+  <%= @response.user_id %>
+</p>
+
+<p>
+  <b>Response value:</b>
+  <%= @response.response_value %>
+</p>
+
+<p>
+  <b>Checkpoint user:</b>
+  <%= @response.checkpoint_user_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_response_path(@response) %> |
+<%= link_to 'Back', responses_path %>

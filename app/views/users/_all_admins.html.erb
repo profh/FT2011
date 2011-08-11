@@ -1,0 +1,25 @@
+<% unless @admins_all.empty? %>
+	<% @admins_all.each do |u| %>
+		<div class="profile_item_header">Administrator Name</div>
+		<div class="profile_item_value"><%= u.full_name %></div>
+		<div class="clear"></div>					
+		
+		<div class="profile_item_header">Email</div>
+		<div class="profile_item_value"><%= u.email %></div>
+		<div class="clear"></div>					
+		
+		<div class="profile_item_header">Phone Number</div>
+		<div class="profile_item_value"><%= u.phone%></div>
+		<div class="clear"></div>			
+	
+		<div class="button"><%= link_to 'Show', u %></div>
+		<div class="button"><%= link_to 'Edit', edit_user_path(u) %></div>
+		<div class="button"><%= link_to 'Delete', u, :confirm => 'Are you sure?', :method => :delete %></div>				
+		
+		<br /><br /><hr />
+		
+		<div class="clear"></div>					
+	<% end %>
+<% else %>
+		There are currently no administrators in the system.
+<% end %>

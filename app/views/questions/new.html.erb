@@ -1,0 +1,138 @@
+<div id="content" class="color_checkpoints">
+	<div class="clear"></div>
+		
+	<div id="whole" class="content_area">
+		<div class="checkpoints_border">
+			<div class="checkpoints_title">Measurement: <%=h @measurement.name %></div>
+			<div class="checkpoints_name">Manage Questions</div>
+			<div class="clear"></div>
+			
+			<div class="checkpoints_description">
+			
+				<table>
+				<button id="create-question" style="font-family:sans-serif;font-size:15px;color:#FFF;text-transform:uppercase;background:#852323;border:0;margin:0px 2px" onclick="reset_choices()">Add New Question</button> 
+				<% form_tag '/questions/create', :id => 'questions_submit' do %>
+					<%= hidden_field_tag 'measurement_id', @measurement.id %>
+					<%= hidden_field_tag 'question_list' %>   
+					<button style="cursor:pointer;border-radius:6px;font-family:sans-serif;font-size:15px;color:#FFF;padding:7px 10px;text-transform:uppercase;background:#852323;border:0"><b>Save Changes</b></button>
+				<% end %>
+				</table>
+			
+				<div id="dialog-form" title="Create New Question for [<%=h @measurement.name %>]">
+					<p>All form fields are required.</p>
+
+					<% form_tag '/questions/create', :id => 'question_form' do %>
+					
+					<div class="form_label">What type of question?</div>
+					<%= select_tag(:question_type, "<option value=''>- Select One -</option><option value='1'>Short Answer</option><option value='2'>Multiple Choice</option><option value='3'>Multiple Selection</option><option value='4'>Scale</option>", :class => 'target') %>
+
+					<div class="form_label">Question</div>
+					<%= text_field_tag('question', '', :style => 'width:500px') %>
+
+					<div class="form_label completion_score">Completion Score</div>
+					<div class="completion_score"><%= text_field_tag('completion_score', '', :style => 'width:80px') %></div>
+					
+					<div class="form_label max_length">Max Length</div>
+					<div class="max_length"><%= text_field_tag('max_length', '', :style => 'width:50px') %> characters</div>
+					
+					<div class="form_label choices">Choices</div>
+					<div class="choices" id="choice_list">
+						<div class="button"><a href="#" onclick="add_newform_choices()">Add Choice</a></div><br /><br />
+						<div id="newform_multiple_choice_0">1. <%= text_field_tag('choices_0', '') %> <%= text_field_tag('points_0', '') %></div>
+						<div id="newform_multiple_choice_1">2. <%= text_field_tag('choices_1', '') %> <%= text_field_tag('points_1', '') %></div>
+					</div>
+					
+					<div class="form_label scale_type">Scale Type</div>
+					<div class="scale_type">
+						<table width="300px" align="center">
+							<tr>
+								<td><b>1</b></td>
+								<td>2</td>
+								<td>3</td>
+								<td>4</td>
+								<td>5</td>
+								<td>6</td>
+								<td>7</td>
+								<td>8</td>
+								<td>9</td>
+								<td><b>10</b></td>
+							</tr>
+						</table>
+						<table>
+							<tr>
+								<td>Describe (1):</td>
+								<td><%= text_field_tag('scale_1_description', '', :size => 36) %></td>
+							</tr>
+							<tr>
+								<td>Describe (10):</td>
+								<td><%= text_field_tag('scale_10_description', '', :size => 36) %></td>
+							</tr>			 
+						</table>
+					</div>
+					
+					<br /><br /><hr style="margin-bottom:5px" />
+					<button id="add_question">Add Question</button>
+					
+					<% end %>
+					</form>
+				</div>
+				
+				<div id="dialog-edit-question" title="Edit Question">
+				</div>
+				
+
+				<div class="clear"></div>
+				
+				<div id="all_questions">
+				</div>
+				
+			</div>
+			<div class="clear"></div>
+		</div>
+		
+		
+		<div class="align_right">
+			<div class="button"><%= link_to 'Back to Measurements', measurements_path %></div>&nbsp;
+			<div class="button"><%= link_to 'Back to Checkpoints', checkpoints_path %></div>
+		</div>
+	</div>
+				
+	<div class="clear"></div>
+</div>
+
+<%
+	if(@questions_count > 0)
+		@count = 0
+		while(@count < @questions_count)
+			@key = @questions[@count]['id']
+			@qn = @questions[@count]['content']
+			@type = @questions[@count]['question_type']
+			@completion_score = @questions[@count]['completion_score']
+			@scale1description = ""
+			@scale10description = ""
+			@choices = ""
+			@points = ""
+			
+			@options = QuestionOption.get_options(@key)
+			if(@type == 2 || @type == 3)	
+				@options_count = 0
+				while(@options_count < QuestionOption.get_options(@key).count)
+					if(@options_count != 0)
+						@choices += "+"
+						@points += "+"
+					end
+					@choices +=  @options[@options_count]['content']
+					@points +=  @options[@options_count]['points'].to_s
+					@options_count += 1
+				end
+			elsif(@type == 4)
+				@scale1description = @options[0]['content']
+				@scale10description = @options[1]['content']
+			end			
+			@count += 1
+%>
+<script>load_question('<%= @type %>', '<%= @qn %>', '<%= @completion_score %>', '100', '<%= @choices %>', '<%= @points %>', '<%= @scale1description %>', '<%= @scale10description %>')</script>
+<%			
+		end
+	end
+%>

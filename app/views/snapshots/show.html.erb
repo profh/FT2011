@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Measurement category:</b>
+  <%= @snapshot.measurement_category_id %>
+</p>
+
+<p>
+  <b>Checkpoint:</b>
+  <%= @snapshot.checkpoint_id %>
+</p>
+
+<p>
+  <b>User:</b>
+  <%= @snapshot.user_id %>
+</p>
+
+<p>
+  <b>Percent score:</b>
+  <%= @snapshot.percent_score %>
+</p>
+
+
+<%= link_to 'Edit', edit_snapshot_path(@snapshot) %> |
+<%= link_to 'Back', snapshots_path %>

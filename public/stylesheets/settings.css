@@ -1,0 +1,515 @@
+#themeopt * {
+  padding: 0;
+  margin: 0;
+  text-decoration: none;
+}
+#themeopt {
+  width: 811px;
+  padding: 0;
+  margin: 40px auto 100px auto;
+  font-family: arial;
+  font-size: 12px;
+  color: #333;
+}
+#themeopt .themeopt-wrap {
+  clear: both;
+  display: inline-block;
+  background: url("./images/settings/contentbg.gif") repeat-y;
+}
+#themeopt .themeopt-wrapper {
+  padding: 9px;
+  background: url("./images/settings/contenttop.gif") no-repeat top;
+}
+#themeopt .contentbottom {
+  width: 793px;
+  height: 39px;
+  padding: 9px;
+  padding-top: 12px;
+  display: inline-block;
+  position: relative;
+  background: url("./images/settings/contentbottom.gif") no-repeat;
+}
+#themeopt .contentbottom .promo {
+  padding-top: 7px;
+  padding-right: 10px;
+  color: #a9a9a9;
+  float: right;
+}
+#themeopt .contentbottom .promo a {
+  font-weight: bold;
+  color: #d8425d;
+}
+#themeopt .confirmationbox {
+  width: 146px;
+  height: 75px;
+  padding: 15px 20px 20px 20px;
+  text-align: center;
+  color: #6d6d6d;
+  position: absolute;
+  top: -100px;
+  left: 90px;
+  background: url("./images/settings/confirmbg.png") no-repeat;
+}
+#themeopt .confirmyes {
+  width: 53px;
+  height: 22px;
+  float: left;
+  margin: 3px 3px 0 15px;
+  border: none;
+  background: url("./images/settings/confirmyes.gif") no-repeat;
+  -moz-border-radius: 0px;
+}
+#themeopt .confirmyes:hover {
+  width: 53px;
+  height: 22px;
+  float: left;
+  margin: 3px 3px 0 15px;
+  border: none;
+  background: url("./images/settings/confirmyes.gif") no-repeat;
+  -moz-border-radius: 0px;
+}
+#themeopt .confirmno {
+  width: 53px;
+  height: 22px;
+  float: left;i
+  margin-top: 3px;
+  border: none;
+  background: url("./images/settings/confirmno.gif") no-repeat;
+}
+#themeopt .submit .submitbutton {
+  width: 104px;
+  height: 35px;
+  text-align: center;
+  display: block;
+  border: none;
+  text-shadow: none;
+  font-weight: bold;
+  color: #fff;
+  background: url("./images/settings/formsubmit.gif") no-repeat;
+  -moz-border-radius: 0px;
+}
+#themeopt .submit .submitbutton span {
+  line-height: 37px;
+}
+#themeopt p.submit  {
+  font-size: 11px;
+  float: left;
+  margin-left: 6px;
+}
+#themeopt .submit .submitbutton:hover {
+  cursor: pointer;
+  background: url("./images/settings/formsubmithover.gif") no-repeat;
+}
+#themeopt .themeopt-button-wrap {
+  clear: both;
+}
+#themeopt .themeopt-link {
+  width: 98%;
+  height: 26px;
+  color: #85959f;
+  padding: 10px 2% 0 0;
+  display: block;
+  float: right;
+  clear: both;
+}
+#themeopt .themeopt-link a {
+  color: #e4e4e4;
+  font-weight: bold;
+}
+/*-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ --*/
+/*--              form styling         --*/
+/*-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ --*/
+
+#themeopt h2, #themeopt label {
+  color: #545454;
+  font-size: 13px;
+  font-weight: bold;
+  line-height: 35px;
+}
+#themeopt label.textarealabel {
+  color: #545454;
+  font-size: 13px;
+  font-weight: bold;
+  line-height: 25px;
+}
+#themeopt span.textareaspan {
+  color: #aaa;
+  font-size: 11px;
+  font-weight: normal;
+  line-height: 22px;
+}
+#themeopt .full label {
+  margin-left: 12px;
+}
+#themeopt input.text, #themeopt textarea.textarea, #themeopt input.colorpick {
+  width: 100%;
+  padding: 11px 11px;
+  color: #868686;
+  border: 1px solid #d3d3d3;
+  background: #fff url("./images/settings/input.gif") repeat-x;
+  -moz-border-radius: 0px;
+}
+#themeopt .uploadsubmit {
+  width: 94px;
+  height: 32px;
+  border: none;
+  display: block;
+  background: url("./images/settings/upload.gif") no-repeat;
+}
+#themeopt .uploadfile {
+  padding: 10px 0 10px 0;
+}
+#themeopt .midtext {
+  width: 250px;
+  padding: 11px 11px;
+  margin: 0 10px;
+  color: #868686;
+  border: 1px solid #d3d3d3;
+  background: #fff url("./images/settings/input.gif") repeat-x;
+  -moz-border-radius: 0px;
+}
+#themeopt .fullmid {
+  width: 355px;
+  padding-left: 15px;
+  float: left;
+}
+#themeopt .fullmid img {
+  vertical-align: middle;
+}
+#themeopt .smalltext {
+  width: 90px;
+  padding: 11px 11px;
+  margin: 0 10px;
+  color: #868686;
+  border: 1px solid #d3d3d3;
+  background: #fff url("./images/settings/input.gif") repeat-x;
+  -moz-border-radius: 0px;
+}
+#themeopt .select {
+  width: 94%;
+  padding: 7px;
+  color: #868686;
+  border: 1px solid #d3d3d3;
+  background: #fff url("./images/settings/input.gif") repeat-x;
+}
+#themeopt .select select {
+  width: 100%;
+  border: none;
+  background: none;
+}
+#themeopt .enabled {
+  cursor: pointer;
+  margin: 5px;
+}
+#themeopt .enabled img {
+  vertical-align: middle;
+  width: 118px;
+  height: 42px;
+  background: transparent url("./images/settings/radio.gif") no-repeat left -42px;
+}
+#themeopt .enabled:hover img {
+  vertical-align: middle;
+  width: 118px;
+  height: 42px;
+  background: transparent url("./images/settings/radio.gif") no-repeat left -84px;
+}
+#themeopt .enabled-checked img, #themeopt .enabled-checked:hover img {
+  background-position: left top;
+}
+#themeopt .disabled {
+  cursor: pointer;
+  margin: 5px;
+}
+#themeopt .disabled img {
+  vertical-align: middle;
+  width: 118px;
+  height: 42px;
+  background: transparent url("./images/settings/radio.gif") no-repeat -118px -42px;
+}
+#themeopt .disabled:hover img {
+  vertical-align: middle;
+  width: 118px;
+  height: 42px;
+  background: transparent url("./images/settings/radio.gif") no-repeat -118px -84px;
+}
+#themeopt .disabled-checked img, #themeopt .disabled-checked:hover img {
+  background-position: -118px top;
+}
+#themeopt .enabledsmall {
+  cursor: pointer;
+  margin: 0 5px;
+}
+#themeopt .enabledsmall img {
+  vertical-align: middle;
+  width: 98px;
+  height: 38px;
+  background: transparent url("./images/settings/radiosmall.gif") no-repeat 0 -38px;
+}
+#themeopt .enabledsmall:hover img {
+  vertical-align: middle;
+  width: 98px;
+  height: 38px;
+  background: transparent url("./images/settings/radiosmall.gif") no-repeat 0 -76px;
+}
+#themeopt .enabledsmall-checked img, #themeopt .enabledsmall-checked:hover img {
+  background-position: 0 top;
+}
+#themeopt .disabledsmall {
+  cursor: pointer;
+  margin: 0 5px;
+}
+#themeopt .disabledsmall img {
+  vertical-align: middle;
+  width: 98px;
+  height: 38px;
+  background: transparent url("./images/settings/radiosmall.gif") no-repeat -98px -38px;
+}
+#themeopt .disabledsmall:hover img {
+  vertical-align: middle;
+  width: 98px;
+  height: 38px;
+  background: transparent url("./images/settings/radiosmall.gif") no-repeat -98px -76px;
+}
+#themeopt .disabledsmall-checked img, #themeopt .disabledsmall-checked:hover img {
+  background-position: -98px top;
+}
+
+#themeopt .enabledlogo {
+  cursor: pointer;
+  margin: 0 5px;
+}
+#themeopt .enabledlogo img {
+  vertical-align: middle;
+  width: 118px;
+  height: 42px;
+  background: transparent url("./images/settings/radiologo.gif") no-repeat 0 -42px;
+}
+#themeopt .enabledlogo:hover img {
+  vertical-align: middle;
+  width: 118px;
+  height: 42px;
+  background: transparent url("./images/settings/radiologo.gif") no-repeat 0 -84px;
+}
+#themeopt .enabledlogo-checked img, #themeopt .enabledlogo-checked:hover img {
+  background-position: 0 top;
+}
+#themeopt .disabledlogo {
+  cursor: pointer;
+  margin: 0 5px;
+}
+#themeopt .disabledlogo img {
+  vertical-align: middle;
+  width: 118px;
+  height: 42px;
+  background: transparent url("./images/settings/radiologo.gif") no-repeat -118px -42px;
+}
+#themeopt .disabledlogo:hover img {
+  vertical-align: middle;
+  width: 118px;
+  height: 42px;
+  background: transparent url("./images/settings/radiologo.gif") no-repeat -118px -84px;
+}
+#themeopt .disabledlogo-checked img, #themeopt .disabledlogo-checked:hover img {
+  background-position: -118px top;
+}
+
+/*-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ --*/
+/*--                Layout             --*/
+/*-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ --*/
+
+#themeopt .header {
+  width: 811px;
+  height: 81px;
+  background: url("./images/settings/topbg.gif") repeat-x;
+}
+#themeopt .logo {
+  width: 232px;
+  height: 81px;
+  float: left;
+  background: url("./images/settings/logo.gif") no-repeat;
+}
+#themeopt .topbars {
+  width: 569px;
+  height: 81px;
+  padding: 0 10px 0 0;
+  text-align: right;
+  display: block;
+  float: right;
+  background: url("./images/settings/topright.gif") no-repeat right;
+}
+#themeopt .topbars .topbar {
+  height: 43px;
+  padding: 0 0 0 10px;
+  display: block;
+  float: right;
+  background: url("./images/settings/topbar.gif") no-repeat left;
+}
+#themeopt .topbars .advertisement {
+  width: 129px;
+  background: url("./images/settings/advertisementa.gif") no-repeat;
+}
+#themeopt .topbars .general {
+  width: 77px;
+  background: url("./images/settings/generala.gif") no-repeat;
+}
+#themeopt .topbars .colors {
+  width: 57px;
+  background: url("./images/settings/colorsa.gif") no-repeat;
+}
+#themeopt .topbars .featured {
+  width: 78px;
+  background: url("./images/settings/featureda.gif") no-repeat;
+}
+#themeopt .topbars .navigation {
+  width: 84px;
+  background: url("./images/settings/navigationa.gif") no-repeat;
+}
+#themeopt .topbars .layout {
+  width: 62px;
+  background: url("./images/settings/layouta.gif") no-repeat;
+}
+#themeopt .topbars .selectedadvertisement, #themeopt .topbars .advertisement:hover {
+  width: 129px;
+  background: url("./images/settings/advertisementselected.gif") no-repeat;
+}
+#themeopt .topbars .selectedgeneral, #themeopt .topbars .general:hover {
+  width: 77px;
+  background: url("./images/settings/generalselected.gif") no-repeat;
+}
+#themeopt .topbars .selectedcolors, #themeopt .topbars .colors:hover {
+  width: 57px;
+  background: url("./images/settings/colorsselected.gif") no-repeat;
+}
+#themeopt .topbars .selectedfeatured, #themeopt .topbars .featured:hover {
+  width: 78px;
+  background: url("./images/settings/featuredselected.gif") no-repeat;
+}
+#themeopt .topbars .selectednavigation, #themeopt .topbars .navigation:hover {
+  width: 84px;
+  background: url("./images/settings/navigationselected.gif") no-repeat;
+}
+#themeopt .topbars .selectedlayout, #themeopt .topbars .layout:hover {
+  width: 62px;
+  background: url("./images/settings/layoutselected.gif") no-repeat;
+}
+
+
+#themeopt .halftop {
+  width: 384px;
+  height: 2px;
+  background: url("./images/settings/halftop.gif") no-repeat;
+}
+#themeopt .half {
+  width: 384px;
+  margin: 6px 6px;
+  display: inline-block;
+  float: left;
+  background: url("./images/settings/halfbg.gif") repeat-y;
+}
+#themeopt .blank {
+  width: 384px;
+  margin: 6px 6px;
+  display: inline-block;
+  float: left;
+}
+#themeopt .halfpadding {
+  width: 370px;
+  padding: 7px;
+  display: inline-block;
+  background: url("./images/settings/halfbottom.gif") no-repeat bottom;
+}
+#themeopt .halftitle {
+  width: 357px;
+  height: 30px;
+  padding: 13px 0 0 13px;
+  color: #7a7a7a;
+  font-size: 15px;
+  font-weight: bold;
+  clear: both;
+  background: url("./images/settings/halftitle.gif") no-repeat;
+}
+#themeopt .half .left {
+  width: 265px;
+  padding: 30px 10px;
+  float: left;
+}
+#themeopt .half .icon {
+  width: 85px;
+  text-align: center;
+  padding-top: 20px;
+  float: left;
+}
+#themeopt .half .spacer {
+  width: 267px;
+  height: 25px;
+  background: url("./images/settings/spacer.gif") no-repeat center 20px;
+}
+#themeopt .layoutwrap {
+  width: 332px;
+  height: 39px;
+  padding: 7px;
+  margin-bottom: 10px;
+  background: url("./images/settings/layout.gif") no-repeat;
+}
+#themeopt .layoutleft {
+  width: 118px;
+  float: left;
+}
+#themeopt .layoutwrap .layoutlabel {
+  padding-bottom: 20px;
+  padding-left: 10px;
+  float: left;
+}
+#themeopt .layoutimg {
+  vertical-align: middle;
+  display: block;
+  float: left;
+}
+#themeopt .layoutwrap .layoutlabel label {
+  font-weight: normal;
+}
+
+#themeopt .fulltop {
+  width: 782px;
+  height: 2px;
+  background: url("./images/settings/fulltop.gif") no-repeat;
+}
+#themeopt .full {
+  width: 782px;
+  margin: 6px 6px;
+  display: inline-block;
+  float: left;
+  background: url("./images/settings/fullbg.gif") repeat-y;
+}
+#themeopt .fullpadding {
+  width: 768px;
+  padding: 7px;
+  display: inline-block;
+  background: url("./images/settings/fullbottom.gif") no-repeat bottom;
+}
+#themeopt .fulltitle {
+  width: 755px;
+  height: 32px;
+  padding: 13px 0 0 13px;
+  color: #7a7a7a;
+  font-size: 15px;
+  font-weight: bold;
+  clear: both;
+  background: url("./images/settings/fulltitle.gif") no-repeat;
+}
+#themeopt .full .left {
+  width: 655px;
+  padding: 30px 10px;
+  float: left;
+}
+#themeopt .full .leftadv {
+  width: 743px;
+  padding: 2px 10px;
+  float: left;
+}
+#themeopt .full .icon {
+  width: 85px;
+  text-align: center;
+  padding-top: 20px;
+  float: left;
+}

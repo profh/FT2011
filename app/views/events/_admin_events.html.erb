@@ -1,0 +1,113 @@
+<div id="content" class="color_events">
+	<div class="clear"></div>
+		
+	<div id="top_left" class="content_area">
+		<div class="box_title">Results from Last Event</div>
+		<% if(@past_events.length == 0) %>
+			There are no events.
+		<% end %>
+		<% @past_events.first(1).each do |event| %>
+		<div class="event_item_header">Name</div>
+		<div class="event_item_value"><%= event.name %></div>
+
+		<div class="event_item_header">Start Date</div>
+		<div class="event_item_value"><%= event.start_date.strftime("%b-%d-%Y %H:%Mh") %></div>
+		
+		<div class="event_item_header">End Date</div>
+		<div class="event_item_value"><%= event.end_date.strftime("%b-%d-%Y %H:%Mh") %></div>		
+		
+		<div class="event_item_header">Signup Rate</div>
+		<div class="event_item_value"><%= "%.0f" % (Float(event.registrations.length) / Float(event.max_participants) * 100) %>%</div>
+
+		<div class="event_item_header">Measurements</div>
+		<div class="event_item_value">
+			<% @measurement_count = 0 %>
+			<% event.measurements.each do |m| %><% if(@measurement_count != 0) %>, <% end %><%= m.name %><% @measurement_count += 1 %><% end %>
+		</div>		
+		<% end %>
+	</div>
+	
+	<div id="top_right" class="content_area">
+		<div class="box_title">Quick Links</div>
+		<div class="event_item_header"><%= link_to 'Events', :action => 'all' %></div>
+		<div class="event_item_value">
+			<div class="button"><%= link_to 'Create New', new_event_path %></div>
+			<div class="button"><%= link_to 'View All', :action => 'all' %></div>
+		</div>
+		
+		<div class="event_item_header"><%= link_to 'Event Types', event_types_path %></div>
+		<div class="event_item_value">
+			<div class="button"><%= link_to 'Create New', new_event_type_path %></div>
+			<div class="button"><%= link_to 'View All', event_types_path %></div>
+		</div>
+
+		<div class="event_item_header"><%= link_to 'Locations', locations_path %></div>
+		<div class="event_item_value">
+			<div class="button"><%= link_to 'Create New', new_location_path %></div>
+			<div class="button"><%= link_to 'View All', locations_path %></div>
+		</div>
+	</div>
+				
+	<div class="clear"></div>
+			
+	<div id="bottom_left" class="content_area">	
+		<div class="box_title">Past Events</div>
+		<% if(@past_events.length == 0) %>
+			There are no past events.<br />
+		<% end %>
+		<% @past_events.each do |event| %>
+			<table>
+				<tr>
+					<td>
+						<div class="calendar">
+							<div class="month"><%=h event.start_date.strftime("%b") %></div>
+							<div class="date"><%=h event.start_date.strftime("%d") %></div>
+						</div>
+					<td>
+					<td>
+						<%= link_to event.name, event %><br />
+						@ <%=h event.location.name %>
+					</td>
+				</tr>
+			</table>
+		<% end %>
+		<% if(@past_events.length != 0) %>
+		<br />
+		<div class="button"><%= link_to 'View All', :action => 'past' %></div>
+		<% end %>
+	</div>
+	
+	<div id="bottom_right" class="content_area">
+		<div class="box_title">Upcoming Events</div>
+		<% if(@upcoming_events.length == 0) %>
+			There are no upcoming events.<br />
+		<% end %>
+		<% @upcoming_events.first(4).each do |event| %>
+			<table>							
+				<tr>
+					<td>
+						<div class="calendar">
+							<div class="month"><%=h event.start_date.strftime("%b") %></div>
+							<div class="date"><%=h event.start_date.strftime("%d") %></div>
+						</div>
+					<td>
+					<td width="230px">
+						<%= link_to event.name, event %><br />
+						@ <%=h event.location.name %>
+					</td>
+					<td>
+						<div class="button"><%= link_to 'Edit', edit_event_path(event) %></div>
+						<div class="button"><%= link_to 'Delete', event, :confirm => 'Are you sure?', :method => :delete %></div>
+					</td>
+				</tr>
+			</table>
+		<% end %>
+		<br />
+		<div class="button"><%= link_to 'Create New', new_event_path %></div>
+		<% if(@upcoming_events.length != 0) %>
+		<div class="button"><%= link_to 'View All', :action => 'all' %></div>		
+		<% end %>
+	</div>
+
+	<div class="clear"></div>
+</div>

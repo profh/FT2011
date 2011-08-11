@@ -1,0 +1,40 @@
+	<div id="dialog-new-checkpoint" title="<%= @form_title %>">
+		<p>All form fields are required.</p>
+
+			<% form_for(@checkpoint, :html => { :id => "checkpoints_form" }) do |f| %>
+			<% if @checkpoint.errors.any? %>
+		    <div id="error_explanation">
+		      <h2><%= pluralize(@checkpoint.errors.count, "error") %> prohibited this checkpoint from being saved:</h2>
+
+		      <ul>
+		      <% @checkpoint.errors.full_messages.each do |msg| %>
+		        <li><%= msg %></li>
+		      <% end %>
+		      </ul>
+		    </div>
+		  <% end %>
+
+			<div class="form_label"><%= f.label :name %></div>
+			<%= f.text_field :name %>
+			<br />
+
+			<div class="form_label"><%= f.label :due_on %></div>
+			<%= f.text_field :due_on, :class => "datetimepicker" %>
+			<br />
+
+			<div class="form_label"><%= f.label "Organizations" %></div>
+			<input type="text" id="autocomplete_organizations" name="autocomplete_organizations" placeholder="Type an organization" style="color:#999" value="Type an organization" onfocus="this.value='';this.style.color='#000'" onblur="this.value='Type an organization';this.style.color='#999'" />
+			<div id="selected_organizations"></div>
+
+			<div class="clear"></div>
+
+			<%= hidden_field_tag 'selected_organizations_string', '' %>
+			<div class="actions">
+		    <%= f.submit %>
+		  </div>
+
+			<% end %>
+	</div>
+
+
+

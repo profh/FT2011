@@ -1,0 +1,45 @@
+<div id="content" class="color_profile">
+	<div class="clear"></div>
+		
+	<div id="whole" class="content_area">
+		<div class="profile_border">
+			<div class="profile_title">Organization Types</div>
+			<div class="profile_name">All Organization Types</div>
+			<div class="clear"></div>
+			
+			<div class="profile_description">
+				<hr />
+				<% @organization_types.each do |org_type| %>
+					<div class="profile_item_header">Name</div>
+					<div class="profile_item_value"><%=h org_type.name %></div>
+					
+					<div class="profile_item_header">Description</div>
+					<div class="profile_item_value"><%=h org_type.description %></div>
+
+					<div class="profile_item_header">Active</div>
+					<div class="profile_item_value"><%=h org_type.active %></div>
+					
+					<div class="clear"></div>
+					
+					<div class="button"><%= link_to 'Show', org_type %></div>
+					<div class="button"><%= link_to 'Edit', edit_organization_type_path(org_type) %></div>
+					<div class="button"><%= link_to 'Delete', org_type, :confirm => 'Are you sure?', :method => :delete %></div>
+					
+					<div class="clear"></div>
+					<hr />
+				
+				<% end %>
+				
+				<div class="clear"></div>
+			</div>		
+		</div>
+		
+		<div class="clear"></div>
+		<div class="align_right">
+			<div class="button"><%= link_to 'New Organization Type', new_organization_type_path %></div>
+			<div class="button"><%= link_to 'Organizations Main Page', organizations_path %></div>
+		</div>		
+	</div>			
+						
+	<div class="clear"></div>
+</div>

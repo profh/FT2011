@@ -1,0 +1,38 @@
+
+<div id="dialog-new-eventtype" title="<%= @form_title %>">
+	<p>All form fields are required.</p>
+	<fieldset>
+		<% form_for(@event_type) do |f| %>
+		<% if @event_type.errors.any? %>
+	    <div id="error_explanation">
+	      <h2><%= pluralize(@event_type.errors.count, "error") %> prohibited this event_type from being saved:</h2>
+
+	      <ul>
+	      <% @event_type.errors.full_messages.each do |msg| %>
+	        <li><%= msg %></li>
+	      <% end %>
+	      </ul>
+	    </div>
+	  <% end %>	 
+		
+		<div class="form_label"><%= f.label :name %></div>
+		<%= f.text_field :name %>
+		<br />
+		
+		<div class="form_label"><%= f.label :description %></div>
+		<%= f.text_area :description, :rows => 5 %>
+		<br />
+		
+		<div class="field">
+	    <%= f.label :active %><br />
+	    <%= f.check_box :active %>
+	  </div>
+		<br /><br />
+		
+	
+	  <div class="actions">
+	    <%= f.submit %>
+	  </div>
+		<% end %>
+	</fieldset>
+</div>

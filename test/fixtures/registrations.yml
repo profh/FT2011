@@ -1,0 +1,19 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  user_id: 1
+  event_id: 1
+  authority_id: 1
+  id_card_id: 1
+  amount_paid: 9.99
+  permission_form_received: false
+  deregistration_date: 2011-08-06
+
+two:
+  user_id: 1
+  event_id: 1
+  authority_id: 1
+  id_card_id: 1
+  amount_paid: 9.99
+  permission_form_received: false
+  deregistration_date: 2011-08-06

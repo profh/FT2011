@@ -1,0 +1,13 @@
+<!-- Administrator -->
+<% if !current_user.nil? && current_user.is_admin? %>
+	<%= render :partial => 'checkpoints/admin_cp' %>
+
+<!-- Organization Leader -->
+<% elsif !current_user.nil? && current_user.is_organization_admin? %>
+	<%= render :partial => 'checkpoints/orgleader_cp' %>
+
+<!-- Participant-->
+<% elsif !current_user.nil? && current_user.is_participant? %>
+	<%= render :partial => 'checkpoints/participant_cp' %>	
+	
+<% end %>

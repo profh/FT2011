@@ -1,0 +1,29 @@
+<div id="content" class="color_home">
+	<div class="clear"></div>
+
+	<div id="whole" class="content_area">
+		<div class="home_border">
+			<div class="home_title">Announcement From Family Tyes</div>
+			<div class="home_name"><%=h @announcement.title %></div>
+			<div class="clear"></div>
+
+			<div class="home_description">
+
+				<!-- <div class="home_item_header">&nbsp;</div> -->
+				<div class="home_item_value"><%=h @announcement.body %></div>
+
+				<div class="clear"></div>
+			</div>
+			<div class="clear"></div>
+		</div>
+		
+		<div class="align_right">
+			<% if current_user.is_admin? || (current_user.is_organization_admin? && @announcement.user_id == current_user.id) %>
+				<div class="button"><%= link_to 'Edit',  edit_announcement_path(@announcement) %></div>
+			<% end %>
+			<div class="button"><%= link_to 'Back', home_path('home') %></div>
+		</div>
+	</div>
+
+	<div class="clear"></div>
+</div>

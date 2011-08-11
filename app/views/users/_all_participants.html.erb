@@ -1,0 +1,39 @@
+<% unless @participants_all.empty? %>
+		<% @participants_all.each do |u| %>
+			<div class="profile_item_header">Participant Name</div>
+			<div class="profile_item_value"><%= u.full_name %></div>
+			
+			<div class="profile_item_header">Organization(s)</div>
+			<div class="profile_item_value">
+				<% if u.organizations.size > 0 %>
+					<%= u.organizations.map{|uo| uo.name}.join(", ")%>
+				<% else %>
+					(no organizations)
+				<% end %>
+			</div>
+			
+			<div class="profile_item_header">Gender</div>
+			<div class="profile_item_value">
+				<% if u.gender == nil %>
+					Gender not filed, please update profile
+				<% else %>
+					<%= u.gender%>
+				<% end %>
+			</div>
+			
+			<div class="profile_item_header">Age</div>
+			<div class="profile_item_value"><%= u.age%></div>
+			
+			<div class="clear"></div>					
+		
+			<div class="button"><%= link_to 'Show', u %></div>
+			<div class="button"><%= link_to 'Edit', edit_user_path(u) %></div>
+			<div class="button"><%= link_to 'Delete', u, :confirm => 'Are you sure?', :method => :delete %></div>				
+			
+			<br /><br /><hr />
+			
+			<div class="clear"></div>					
+		<% end %>
+	<% else %>
+		There are currently no participants in the system.
+<% end %>

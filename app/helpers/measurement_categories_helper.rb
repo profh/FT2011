@@ -1,0 +1,2 @@
+module MeasurementCategoriesHelper
+end

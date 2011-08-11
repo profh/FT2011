@@ -1,0 +1,11 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  user_id: 1
+  bar_code: MyString
+  assigned_on: 2011-08-06 12:26:57
+
+two:
+  user_id: 1
+  bar_code: MyString
+  assigned_on: 2011-08-06 12:26:57

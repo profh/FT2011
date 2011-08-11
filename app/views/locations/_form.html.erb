@@ -1,0 +1,51 @@
+
+<div id="dialog-new-location" title="<%= @form_title %>">
+	<p>All form fields are required.</p>
+
+		<% form_for(@location) do |f| %>
+		<% if @location.errors.any? %>
+	    <div id="error_explanation">
+	      <h2><%= pluralize(@location.errors.count, "error") %> prohibited this location from being saved:</h2>
+
+	      <ul>
+	      <% @location.errors.full_messages.each do |msg| %>
+	        <li><%= msg %></li>
+	      <% end %>
+	      </ul>
+	    </div>
+	  <% end %>
+	
+		<div class="form_label"><%= f.label :name %></div>
+		<%= f.text_field :name %>
+		<br />
+	
+		<div class="form_label"><%= f.label :street %></div>
+		<%= f.text_field :street %>
+		<br />
+		
+		<div class="form_label"><%= f.label :city %></div>
+		<%= f.text_field :city %>
+		<br />
+
+		<div class="form_label"><%= f.label :state %></div>
+		<%= f.select :state, User::STATES, :prompt => "- Select State -" %>
+		<br />
+		
+		<div class="form_label"><%= f.label :zip %></div>
+		<%= f.text_field :zip %>
+		<br />
+		
+		<div class="form_label"><%= f.label :description %></div>
+		<%= f.text_field :description %>
+		<br />
+		
+		<div class="form_label"><%= f.label :active %></div>
+		<%= f.check_box :active %>
+		<br /><br />
+		
+		<div class="actions">
+	    <%= f.submit %>
+	  </div>
+		
+		<% end %>	
+</div>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+	<meta name="keywords" content="FamilyTyes, Family Tyes, fishing, fly-fishing, fly fishing, youth, development, education, leadership">
+  <title>Family Tyes :: <%= controller.controller_name.capitalize %></title>
+  <%= javascript_include_tag "jquery.min", "jquery-ui.min", "jquery_ujs", "application", "nested_form" %>
+  <%= javascript_include_tag "jqlibs/autocomplete_measurements", "jqlibs/autocomplete_organizations", "jqlibs/bargraph", "jqlibs/datatable_init", "jqlibs/datetimepicker", "jqlibs/dialog", "jqlibs/horiz-bar-graph", "jqlibs/jquery-ui-timepicker-addon", "jqlibs/jquery.dataTables", "jqlibs/pagination", "jqlibs/piechart", "jqlibs/question_builder", "jqlibs/slider-bar" %>
+	<%= stylesheet_link_tag :all %>
+  <%# stylesheet_link_tag 'style', 'common', 'messages' %>
+	<%# stylesheet_link_tag "jquery/autocomplete", "jquery/jquery-ui-timepicker", "jquery/pagination", "jquery/piechart" %>
+	<%= csrf_meta_tag %>
+
+		<script>
+			$(function(){
+				separator = '';
+				$("#upcoming_events").pagination();
+			});
+		</script>
+
+		<!-- tabs -->
+		<script>
+			$(document).ready(function() {
+			$(".tab_content").hide();
+			$("ul.tabs li:first").addClass("active").show(); 
+			$(".tab_content:first").show();
+
+				$("ul.tabs li").click(function() {
+					$("ul.tabs li").removeClass("active"); 
+					$(this).addClass("active"); 
+					$(".tab_content").hide(); 
+
+					var activeTab = $(this).find("a").attr("href"); 
+					$(activeTab).fadeIn(); 
+					return false;
+				});
+
+			});
+		</script>
+
+		<!--[if IE]>
+		<script src="http://explorercanvas.googlecode.com/svn/trunk/excanvas.js"></script>
+		<![endif]-->	
+		
+</head>
+<body>
+	<div class="marginauto">
+		<%= render :partial => "partials/loginout" %> 
+		<%= render :partial => "partials/header" %> 
+		
+		<div class="homepage">
+			<%= render :partial => "partials/messages" %>
+			<%= yield %>
+		</div>
+		
+		<div id="footer" class="color_home">
+			<%= render :partial => "partials/footer" %> 
+		</div>
+	</div>
+</body>
+</html>

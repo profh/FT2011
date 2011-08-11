@@ -1,0 +1,99 @@
+<div id="content" class="color_events">
+	<div class="clear"></div>
+		
+	<div id="whole" class="content_area">
+		<div class="event_border">
+			<div class="event_title">About</div>
+			<div class="event_name"><%=h @event.name %></div>
+			<div class="clear"></div>
+			
+			<div class="event_description">
+				<%=h @event.description %>
+				<div class="clear"></div>
+			
+				<div class="event_item_header">Event Type</div>
+				<div class="event_item_value"><%=h @event.event_type.name %></div>
+				<div class="clear"></div>
+				
+				<div class="event_item_header">Start Date</div>
+				<div class="event_item_value"><%=h @event.start_date.strftime("%A %d %b %Y @ %I:%M%p") %></div>
+				<div class="clear"></div>
+
+				<div class="event_item_header">End Date</div>
+				<div class="event_item_value"><%=h @event.end_date.strftime("%A %d %b %Y @ %I:%M%p") %></div>
+				<div class="clear"></div>
+				
+				<div class="event_item_header">Organization</div>
+				<div class="event_item_value">
+					<% 
+						@org_list = ""
+						@org_count = 0
+						@event.organizations.each do |org|
+							if(@org_count != 0)
+								@org_list += ", "
+							end	
+							@org_list += org.name
+							@org_count += 1
+						end
+					%>
+					<%= @org_list%>
+				</div>
+				<div class="clear"></div>				
+				
+				<div class="event_item_header">Location</div>
+				<div class="event_item_value"><%=h @event.location.name %></div>
+				<div class="clear"></div>
+
+				<div class="event_item_header">Cost</div>
+				<div class="event_item_value">$<%=h "%.2f" % (@event.cost) %></div>
+				<div class="clear"></div>
+
+				<div class="event_item_header">Registered Participants</div>
+				<div class="event_item_value"><%=h @event.registration_count %></div>
+				<div class="clear"></div>
+				
+				<div class="event_item_header">Max Participants</div>
+				<div class="event_item_value"><%=h @event.max_participants_helper %></div>
+				<div class="clear"></div>
+				
+				<div class="event_item_header">Parental Consent</div>
+				<div class="event_item_value">
+					<% if @event.permission_required? %>Required
+					<% else %>Not Required
+					<% end %>
+				</div>
+				<div class="clear"></div>				
+				
+				<div class="event_item_header">Measurments</div>
+				<div class="event_item_value">
+					<%
+						@display = ""
+						@count = 0
+						while (@event_measurements[@count] != nil)
+							if(@event_measurements[@count]['name'] != nil)
+								if(@count !=0)
+									@display += ", "
+								end
+								@display += @event_measurements[@count]['name']
+								@count += 1
+							end
+						end
+					%>
+					<%=h @display %>
+					</div>
+				<div class="clear"></div>				
+			</div>
+		</div>
+		
+		
+		<div class="align_right">
+			<% if !current_user.nil? && current_user.is_organization_admin? %>
+			<div class="button"><%= link_to 'Edit', edit_event_path(@event) %></div>
+			<div class="button"><%= link_to 'Delete', @event, :confirm => 'Are you sure?', :method => :delete %></div>
+			<% end %>
+			<div class="button"><%= link_to 'Back', events_path %></div>
+		</div>
+	</div>
+				
+	<div class="clear"></div>
+</div> 

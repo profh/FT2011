@@ -1,0 +1,202 @@
+<div id="content" class="color_home">
+	<div class="clear"></div>
+	
+	<div id="top_left" class="content_area">
+		<div class="box_title">Announcements</div>
+		<% if(@announcements.length == 0) %>
+			There are no announcements.<br />
+		<% end %>
+		<% @announcements.first(4).each do |a| %>	
+		<table>			
+			<tr>
+				<td>
+					<div class="calendar_home">
+						<div class="month"><%=h a.created_at.strftime("%b") %></div>
+						<div class="date"><%=h a.created_at.strftime("%d") %></div>
+					</div>					
+				</td>
+				<td width="230px">
+					<%= link_to a.title, a %><br /> 
+					<%=h truncate(a.body, 60) %>
+				</td>
+				<td>
+					<div class="button"><%= link_to 'Edit', edit_announcement_path(a) %></div>
+					<div class="button"><%= link_to 'Delete', a, :confirm => 'Are you sure?', :method => :delete %></div>
+				</td>
+			</tr>
+		</table>
+		<% end %>
+		<br />
+		<div class="button"><%= link_to 'Create New', new_announcement_path %></div>		
+		<% if(@announcements.length != 0) %>
+			<div class="button"><%= link_to 'View All', announcements_path %></div>
+		<% end %>
+	</div>
+		
+	<div id="top_right" class="content_area">
+		<div class="box_title">Upcoming Events</div>
+		<% if(@upcoming_events.length == 0) %>
+			There are no upcoming events.<br />
+		<% end %>
+		<% @upcoming_events.first(4).each do |event| %>	
+			<table>						
+				<tr>
+					<td>
+						<div class="calendar_home">
+							<div class="month"><%=h event.start_date.strftime("%b") %></div>
+							<div class="date"><%=h event.start_date.strftime("%d") %></div>
+						</div>
+					<td>
+					<td width="230px">
+						<%= link_to event.name, event %><br />
+						@ <%=h event.location.name %>
+					</td>
+					<td>
+						<div class="button"><%= link_to 'Edit', edit_event_path(event) %></div>
+						<div class="button"><%= link_to 'Delete', event, :confirm => 'Are you sure?', :method => :delete %></div>
+					</td>
+				</tr>					
+			</table>
+		<% end %>
+		<br />
+		<div class="button"><%= link_to 'Create New', new_event_path %></div>
+		<% if(@new.length != 0) %>
+			<div class="button"><%= link_to 'View All', events_path %></div>
+		<% end %>			
+	</div>
+				
+	<div class="clear"></div>
+			
+	<div id="bottom" class="content_area">
+		<div class="box_title">Overall Snapshot</div>
+
+		<ul class="tabs">
+			<li><a href="#tab1">General</a></li>
+			<li><a href="#tab2">Age</a></li>
+			<li><a href="#tab3">Race</a></li>
+			<li><a href="#tab4">Measurement Category Progress</a></li>
+		</ul>
+
+		<div class="tab_container">
+			<br />
+			<div id="tab1" class="tab_content" style="padding-left:10px">
+				<span style="font-size: 150%; color: #FF8E31"><%=h Organization.all.size %></span> total organizations
+				<br>
+				<br>
+				<span style="font-size: 150%; color: #FF8E31"><%=h @participants.size %></span> total participants
+				<br>
+				<br>
+				
+				<div class="graph" id="gender">
+					<dl>
+						<dt style="font-size: 110%"><span style="color: #FF6163">Girls</span>/<span style="color: #2690C1">Boys</span>:</dt>
+							<dd style="color: #ffffff" align="center" alt="test"><%=h User.female_participants.size %></dd>
+							<dd style="color: #ffffff" align="center"><%=h User.male_participants.size %></dd>
+					</dl>
+				</div>
+				<br />				
+				<br />
+				<% unless @participants.reject{|u| u.gender != nil}.size == 0 %>
+					<%=h @participants.reject{|u| u.gender != nil}.size %> participant(s) did not indicate gender.
+				<% end %>
+				
+			</div>
+			
+			<div id="tab2" class="tab_content">
+				<div id="graphage"></div>
+				<br />
+				<% unless @participants.reject{|u| u.birthday != nil}.size == 0 %>
+					<%=h @participants.reject{|u| u.birthday != nil}.size %> participant(s) did not indicate age.
+				<% end %>
+			</div>
+			
+			<div id="tab3" class="tab_content">
+			   <canvas id="chart" width="600" height="400"></canvas>
+				<div id="hide">
+				<table id="chartData">
+					<tr>
+						<th>Race</th>
+						<th>Number of members</th>
+					</tr>
+
+					<tr style="color: #0DA068">
+						<td>White or Caucasian</td><td><%=h @participants.race_white.size %></td>
+					</tr>
+
+					<tr style="color: #194E9C">
+						<td>Black or African American</td><td><%=h @participants.race_black.size %></td>
+					</tr>
+
+					<tr style="color: #ED9C13">
+						<td>Asian or Pacific Islander</td><td><%=h @participants.race_asian.size %></td>
+					</tr>
+
+					<tr style="color: #ED5713">
+						<td>Hispanic, Latino, or Spanish Origin</td><td><%=h @participants.race_spanish.size %></td>
+					</tr>					
+					
+					<tr style="color: #ED5713">
+						<td>American Indian</td><td><%=h @participants.race_americanindian.size %></td>
+					</tr>
+					
+					<tr style="color: #C0C0C0">
+						<td>N/A</td><td><%=h @participants.reject {|u| u.race != nil}.size %></td>
+					</tr>
+					
+				</table>
+				</div>
+			</div>
+			
+			<div id="tab4" class="tab_content">
+				<p>&nbsp;</p>
+				<div id="measurecat"></div>
+			</div>
+			
+			
+		</div>
+
+	</div>
+	<div class="clear"></div>
+</div>
+
+<script type="text/javascript">
+	$(function() {
+		$("#tabs").tabs();
+	});
+</script>
+
+<script type="text/javascript">	
+	arrayOfDataMulti = new Array(
+		 <%= MeasurementCategory.all.map {|m| "[[#{m.overall_snapshot},#{100-m.overall_snapshot}],'#{m.title}']"}.join(",") %>
+		 // <%# MeasurementCategory.all.map {|m| "[[#{m.overall_score},#{m.total_overall_score-m.overall_score}],'#{m.title}']"}.join(",") %>
+	);	
+	
+	$('#measurecat').jqBarGraph({
+		 data: arrayOfDataMulti,
+		 colors: ['#0DA068', '#ED9C13'],
+		 width: 780
+	});
+		
+	arrayOfDataSingle = new Array(
+		 [<%=h @participants.get_age_5_10.size %>,'5-10 y.o.','#FF6B6B'],
+		 [<%=h @participants.get_age_11_15.size %>,'11-15 y.o.','#C7F464'],
+		 [<%=h @participants.get_age_16_20.size %>,'16-20 y.o.','#EB9781'],
+		 [<%=h @participants.get_age_21_over.size %>,'21+ y.o.','#556270']		 
+	);
+	
+	$('#graphage').jqbargraph({
+		 data: arrayOfDataSingle 
+	});
+</script>
+
+<script type="text/javascript">
+	$(function() {
+		$("#gender dl").horizontalBarGraph({
+			colors: ["#FF6163", "#2690C1"], 
+			<% if User.all.size <= 14 %>
+				interval: 0.05});	
+			<% else %>
+				interval: 0.5});
+			<% end %>
+	});
+</script>

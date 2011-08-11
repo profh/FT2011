@@ -1,0 +1,30 @@
+<% unless @orgleaders_all.empty? %>
+		<% @orgleaders_all.each do |u| %>
+			<div class="profile_item_header">Organization Leader Name</div>
+			<div class="profile_item_value"><%= u.full_name %></div>
+			<div class="clear"></div>					
+			
+			<div class="profile_item_header">Organization</div>
+			<div class="profile_item_value"><%= u.organizations.name %></div>
+			<div class="clear"></div>					
+			
+			<div class="profile_item_header">Email</div>
+			<div class="profile_item_value"><%= u.email%></div>
+			<div class="clear"></div>					
+			
+			<div class="profile_item_header">Phone Number</div>
+			<div class="profile_item_value"><%= u.phone%></div>
+			<div class="clear"></div>					
+		
+			<div class="button"><%= link_to 'Show', u %></div>
+			<div class="button"><%= link_to 'Edit', edit_user_path(u) %></div>
+			<div class="button"><%= link_to 'Delete', u, :confirm => 'Are you sure?', :method => :delete %></div>				
+			
+			<br /><br /><hr />
+			
+			<div class="clear"></div>					
+		<% end %>
+<% else %>
+		There are currently no organization leaders in the system.
+	
+<% end %>

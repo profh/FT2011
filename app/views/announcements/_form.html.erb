@@ -1,0 +1,40 @@
+<%= form_for(@announcement) do |f| %>
+  <% if @announcement.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@announcement.errors.count, "error") %> prohibited this announcement from being saved:</h2>
+
+      <ul>
+      <% @announcement.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form_label">
+    <%= f.label :title %><br />
+    <%= f.text_field :title %>
+  </div>
+  <div class="form_label">
+    <%= f.label :body %><br />
+    <%= f.text_area :body, :rows => 5 %>
+  </div>
+  <div class="form_label">
+    <%= f.label :expires_on %><br />
+    <%= f.date_select :expires_on %>
+  </div>
+
+	<% if current_user.is_admin? %>
+	<div class="form_label"><%= f.label :organization_id %></div>
+	<%= f.collection_select :organization_id , Organization.all, :id, :name, :prompt => "All Organizations" %>
+
+	<div class="form_label"><%= f.label :level %></div>
+	<%= f.select :level , @usr_levels, :prompt => "- Select Level-" %>
+	<% else %>
+	<%= f.hidden_field :organization_id, :value =>@org_ids %>
+	<% end %>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

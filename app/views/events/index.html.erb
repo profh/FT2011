@@ -1,0 +1,9 @@
+<!-- Administrator -->
+<% if !current_user.nil? && current_user.is_admin? %>
+	<%= render :partial => 'events/admin_events' %>
+
+<!-- Organization Leader -->
+<% elsif !current_user.nil? %>
+	<%= render :partial => 'events/orgleader_events' %>
+	
+<% end %>

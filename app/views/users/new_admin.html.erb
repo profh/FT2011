@@ -1,0 +1,18 @@
+<div id="dialog-new-user" title="Create New User">
+	<div class="clear"></div>
+	<p>All form fields are required.</p>
+		<% form_for @user do |f| %>
+			<%= f.error_messages %>
+			<div class="form_label"><%= f.label :username %></div>
+			<%= f.text_field :username %>
+			<br />
+
+			<div class="form_label"><%= f.label :email, "Email Address" %></div>
+			<%= f.text_field :email %>
+			<br />
+			<%= f.hidden_field :level, :value => User::USER_LEVELS["system_admin"] %>
+<div class="clear"></div>
+			<%= f.submit "Create User Account" %>
+		
+		<% end %>	
+</div>

@@ -1,0 +1,53 @@
+<div id="content" class="color_events">
+	<div class="clear"></div>
+		
+	<div id="bottom_left" class="content_area">	
+		<div class="box_title">Past Events</div>
+		<% if(@past_events.length == 0) %>
+			There are no past events.
+		<% end %>
+		<% @past_events.first(5).each do |event| %>
+			<table>
+				<tr>
+					<td>
+						<div class="calendar">
+							<div class="month"><%=h event.start_date.strftime("%b") %></div>
+							<div class="date"><%=h event.start_date.strftime("%d") %></div>
+						</div>
+					<td>
+					<td>
+						<%= link_to event.name, event %><br />
+						@ <%=h event.location.name %>
+					</td>
+				</tr>
+			</table>
+		<% end %>
+		<br />
+	</div>
+	
+	<div id="bottom_right" class="content_area">
+		<h1>Upcoming Events</h1>
+		<% @upcoming_events.first(4).each do |event| %>	
+			<table>							
+				<tr>
+					<td>
+						<div class="calendar">
+							<div class="month"><%=h event.start_date.strftime("%b") %></div>
+							<div class="date"><%=h event.start_date.strftime("%d") %></div>
+						</div>
+					<td>
+					<td width="230px">
+						<%= link_to event.name, event %><br />
+						@ <%=h event.location.name %>
+					</td>
+					<td>
+					    <% unless event.registered?(current_user.id) || event.registration_full? %>
+						<div class="button"><%= link_to 'Register', edit_event_path(event) %></div> <% end %>
+					</td>
+				</tr>
+			</table>			
+		<% end %>
+	</div>
+				
+	<div class="clear"></div>
+</div>

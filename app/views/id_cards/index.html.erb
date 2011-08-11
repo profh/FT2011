@@ -1,0 +1,27 @@
+<h1>Listing id_cards</h1>
+
+<table>
+  <tr>
+    <th>User</th>
+    <th>Bar code</th>
+    <th>Assigned on</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @id_cards.each do |id_card| %>
+  <tr>
+    <td><%= id_card.user_id %></td>
+    <td><%= id_card.bar_code %></td>
+    <td><%= id_card.assigned_on %></td>
+    <td><%= link_to 'Show', id_card %></td>
+    <td><%= link_to 'Edit', edit_id_card_path(id_card) %></td>
+    <td><%= link_to 'Destroy', id_card, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Id card', new_id_card_path %>

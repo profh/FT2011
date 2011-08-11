@@ -1,0 +1,27 @@
+<div id="dialog-new-user" title="Create New User">
+	<% form_for @user do |f| %>
+	<%= f.error_messages %>
+	
+	<div class="form_label"><%= f.label :username %></div>
+	<%= f.text_field :username %>
+	<br />
+	
+	<div class="form_label"><%= f.label :email, "Email Address" %></div>
+	<%= f.text_field :email %>
+	<br />
+
+	<div class="form_label"><%= f.label :level, "User Level" %></div>
+	<%= f.select :level, {"organization leader" => 30, "participant" => 10}%>
+	<br />
+
+	<%# if current_user.is_admin? %>
+	<div class="form_label"><%= f.label 'Organization' %></div>
+	<%= collection_select("event_organization", "organization_id", @organizations, :id, :name, {}, {:multiple => true, :size => 5, :name => "organization_ids[]"}) %>
+	<br />
+	<%# end %>
+	<br />
+	<br />
+	<%= f.submit "Create User Account" %>
+
+	<% end %>	
+</div>
